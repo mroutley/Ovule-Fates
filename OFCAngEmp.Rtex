@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage{Sweave}
+
+\pagestyle{plain}
+\setcounter{secnumdepth}{0}
+\bibliographystyle{jeb}
+
+\newcommand{\species}[1]{\textit{#1}}
+\newcommand{\Ca}{\species{Chamerion angustifolium}}
+\newcommand{\ca}{\species{C.~angustifolium}}
+
+\begin{document}
+
+\begin{Scode}{echo=FALSE,results=hide,label=ChamData}
+setwd("~/Documents/")
+data <- read.table("OFJeffsData.txt", header=TRUE)
+data$ProportionOutcrossed <- 1 - data$ProportionSelfed/100
+data$SeedOvule <- data$Seed / (data$Seed + data$Aborted)
+attach(data)
+model <- lm(SeedOvule ~ ProportionOutcrossed + Population)
+gs <- model$coefficients[1]
+gx <- model$coefficients[2] + gs
+\end{Scode}
+
+We can illustrate the approach for estimating the parameters of ovule fates with data for {\Ca} (Onagraceae) from the work of Brian Husband and co-workers. {\ca} produces, on average, 390 ovules/flower \citep{Husband02} and sets 256 seeds after hand cross-pollination \citep{Husband95}. Assuming that \(g_{x}>m\) we can estimate \(m\) as 256/390=\Sexpr{round(256/390,2)}. J.~Tindall and B.~Husband \citetext{unpublished data} pollinated stigmas of {\ca} with ratios of cross to self pollen ranging from 0 to 1 and counted the seed-ovule ratio in the resulting fruit (figure \ref{fig:emp}). Fitting a linear model to these data provides \(g_{s}\)=\Sexpr{round(gs,2)} and \(g_{x}\)=\Sexpr{round(gx,2)}. Substituting these values into equation (tstar) predicts that {\ca} should cross-fertilize all of its ovules.
+
+Depending on where we discuss primary outcrossing rates:
+\begin{itemize}
+\item \(t_{e}\)=0.94 \citep{Husband95}.
+\item Assuming that all ovules were fertilized, \(t_{p}\)=0.925.
+\item Assuming that not all ovules were fertilized, \(g_{s}\)=\Sexpr{round(gs,2)}*0.75=\Sexpr{round(gs*0.75,2)} \citep{Husband95} and \(t_{p}=0.71\).
+\item Based on the \citet{Maki93} approach, \(t_{p}=0.45\).
+\end{itemize}
+
+\begin{figure}
+\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=ChamPEst}
+mean.so <- aggregate(data[Population=="D2",c(7)], by=list(ProportionOutcrossed=data$ProportionOutcrossed[Population=="D2"]), mean, na.rm=TRUE)
+se.so <- aggregate(data[Population=="D2",c(7)], by=list(ProportionOutcrossed=data$ProportionOutcrossed[Population=="D2"]), function(x) sqrt(var(x, na.rm = TRUE)/length(x)))
+at=c(1:5)
+plot(as.integer(mean.so$ProportionOutcrossed), mean.so[,2], axes=FALSE, xlab="Proportion cross pollen", ylab="Seed-ovule ratio", ylim=range(0,1), pch=16)
+segments(at, mean.so[,2]+se.so[,2], at, mean.so[,2]-se.so[,2])
+axis(1, labels=seq(0, 1, 0.25))
+axis(2, las=1)
+\end{Scode}
+\label{fig:emp}
+\end{figure}
+
+\bibliography{/Users/mroutley/Documents/References}
+
+\end{document}

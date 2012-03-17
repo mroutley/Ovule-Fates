@@ -1,0 +1,1504 @@
+\documentclass[letterpaper,titlepage]{scrartcl}
+\usepackage{natbib,graphicx,amsmath,wasysym,amssymb}%,rotating}
+\usepackage[utf8]{inputenc} 
+% \usepackage[colorlinks=true,pdfstartview=FitV, linkcolor=blue,
+% citecolor=blue, urlcolor=blue]{hyperref}
+
+\setcounter{secnumdepth}{0} \raggedright \setlength{\parindent}{1em}
+\pagestyle{plain} \renewcommand{\bibname}{Literature cited}
+\bibliographystyle{cbe}
+
+\newcommand{\species}[1]{\textit{#1}} \newcommand{\fref}{fig.}
+\newcommand{\tref}{table} \newcommand{\eref}{equation}
+\newcommand{\OFMixedMating}{L.~D.~Harder, S.~A.~Richards and
+  M.~B.~Routley, unpublished manuscript}
+
+\author{Matthew B. Routley\thanks{routley@ucalgary.ca} \and Lawrence
+  Harder\thanks{harder@ucalgary.ca}} \title{Consequences of
+  alternative ovule fates for seed production, maternal fitness, and
+  mating-system evolution in flowering plants} \publishers{Department
+  of Biological Sciences, University of Calgary, Calgary, Alberta,
+  Canada T2N 1N4\\Short title: Ovule fates}
+% \date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Ovules are the progenitors of seeds and, consequently, are a crucial
+  component of plant reproduction. We construct a model of the fates
+  of ovules once they are produced and consider the consequences of
+  these fates for seed production and fitness. Our model reveals three
+  limits on seed production: pollen, resources, and ovules. Ovule
+  limitation, in particular, is a novel limit on seed production that
+  may have important consequences for the evolution of plant
+  reproduction. In addition, our model clarifies important concepts in
+  plant reproduction including ovule vs.~seed discounting, competing
+  self-fertilization, pollen limitation, and reproductive
+  assurance. We also illustrate conditions that favour mixed mating as
+  an optimal strategy and suggest that simultaneous self-fertilization
+  is more important than previously appreciated.
+\end{abstract}
+
+\section{Introduction}
+As the progenitors of seeds, ovules link successive sporophyte
+generations and so are a key stage in angiosperm life cycles. Ovule
+production and fertilization govern the dynamics of plant populations
+by establishing the maximum possible cohort size \citep{Moles04}. In
+addition, the outcome of ovule fertilization determines the genetic
+diversity of a (sporophyte) plant's offspring and so influences the
+scope for selection on reproductive traits, especially the mating
+system. Given the central role of ovules in angiosperm reproduction,
+the variety and causes of ovule fates bear diverse and significant
+ecological and evolutionary consequences.
+
+Ovule fates are varied and interact in manners that enhance
+reproductive options. Three main fates are immediately obvious. First,
+some ovules may remain unfertilized because of limited pollen
+dispersal \citetext{reviewed by \citealp{Burd95,Ashman04a}}. Although
+fairly common, such pollen limitation constrains reproductive capacity
+and is universally disadvantageous. The second major fate of ovules
+arises as some embryos die after fertilization. These losses are often
+significant, as an average of only 60\% of the ovules produced by
+outcrossing species develop into seeds, even after abundant
+pollination ({\fref}~\ref{fig:empirical}). Embryo deaths bear diverse
+evolutionary implications, because they result from many processes,
+including the expression of lethal genes, competition with other
+embryos for maternal resources, and maternal offspring choice
+\citep{Charlesworth87,Rigney95,Casper88}. The final major ovule fate is successful development into a
+viable seed, which is of primary ecological and evolutionary
+significance.
+
+This trichotomy of fates is greatly complicated for self-fertile
+hermaphroditic species, because self- and cross-fertilized embryos and
+seeds differ in their value to the parental plant due to dissimilar
+survival probabilities resulting from inbreeding depression
+\citep{Charlesworth87} and the twofold greater contribution of a
+specific parent's genes to the next generation through successful
+self-fertilized offspring \citep{Fisher41}. In particular, as
+\citet{Lloyd79,Lloyd92a} clarified, the consequences of
+self-fertilization depend on when it occurs relative to
+cross-fertilization and whether it reduces cross-fertilization (ovule
+discounting) and the production of outcrossed seeds (seed
+discounting). For example, \citet{Lloyd92a} proposed that
+self-fertilization after cross-fertilization (delayed selfing) evolves
+more readily than self-fertilization that precedes cross-fertilization
+(prior selfing), because delayed selfing cannot cause ovule
+discounting. Such differences in the consequences of the various modes
+of self-fertilization expand the options for mating-system evolution.
+
+Lloyd's \citeyearpar{Lloyd79,Lloyd92a} exploration of the modes of
+selfing highlighted the relevance of ovule fates for mating-system
+evolution; however, his analysis simplified or overlooked several
+features of seed production that affect these fates. Lloyd recognized
+five modes of self-pollination, but considered the consequences of
+each mode in isolation, so that the interacting effects of ovule fates
+remain largely unexamined. Furthermore, although \citet{Lloyd79}
+recognized that “…the frequency of self-fertilization may greatly
+exaggerate the role of self-fertilization in natural populations”
+(pg. 76), because selfed embryos have lower survival than outcrossed
+seeds, he summarized inbreeding depression in a single parameter. This
+approach ignores environmental influences on inbreeding depression and
+differences in the genetic causes and intensity of inbreeding
+depression that affect selfed embryos and independent selfed offspring
+\citep{Husband96}. Lloyd also evaluated the evolutionary consequences
+of the modes of self-fertilization by contrasting the consequences of
+no or complete pollen and seed discounting, rather than allowing their
+intensities to be determined by mating circumstances. Finally, Lloyd
+did not consider the possibility that many plants produce “excess”
+ovules to compensate for embryo deaths during development, as
+suggested by low seed production compared to ovule number, even when
+pollen is abundant \citetext{{\fref}~\ref{fig:empirical};
+  \citealp{Wiens84,Wiens89}}. If ``excess'' ovules compensate for
+embryo deaths, then the loss of an embryo need not affect seed
+production. Such reproductive compensation allows seed production to
+be limited by ovule production, rather than by pollen receipt or the
+resources available for seed development
+({\OFMixedMating}). Furthermore, if compensatory ovules accommodate
+the deaths of genetically inferior embryos without affecting seed
+production, surviving selfed seeds can be more valuable than
+outcrossed seeds, despite considerable genetic load in a population
+\citetext{\citealp{Porcher05}; {\OFMixedMating}}. Clearly, the details
+and consequences of ovule fates are more varied than revealed by
+Lloyd's \citeyearpar{Lloyd79,Lloyd92a} seminal analyses.
+
+In this paper, we model the diverse fates of ovules, including their
+interacting effects on seed production and maternal fitness, and their
+consequences for the evolution of plant mating. This approach provides
+clarification of and insights into foundational concepts in plant
+reproduction, including ovule vs.~seed discounting, competing
+self-fertilization, reproductive assurance, pollen limitation, and
+mixed mating.
+
+\section{Ovule fates models}
+We present two models of ovule fates that consider the proportions and
+numbers of a plant's ovules involved in various outcomes,
+respectively. Proportional fates are easier to understand (e.g.,
+{\fref}~\ref{fig:fates}), so that we present this perspective in most
+of this paper. However, proportional fates do not allow accurate
+characterization of resource competition by developing embryos, which
+depends on the numbers of embryos in different classes and the amount
+of available resources. Therefore, we used the model that considers
+the number of ovules subject to different fates, described in the
+Appendix, for all calculations and examples. Conclusions drawn from
+both models are equivalent. The variables and parameters considered in
+these models are summarized in {\tref}~\ref{table:symbols}: note that
+lower-case symbols represent proportions, whereas upper-case symbols
+represent counts.
+
+\subsection{Mode and timing of fertilization}
+In general, the fates of the $O_{T}$ ovules produced by a plant depend
+jointly on the outcomes of fertilization and seed development
+({\fref}~\ref{fig:fates}). Self-fertilization can occur during three
+qualitatively distinct phases: before, simultaneously with, or after
+cross-fertilizations ({\tref}~\ref{table:modes}). Following
+\citet{Lloyd92a}, we refer to self-fertilization before and after
+cross-fertilization as prior and delayed self-fertilization,
+respectively. Self-fertilization that occurs simultaneously with
+cross-fertilization can result from one of three mechanisms of
+self-pollination, two of which we identify differently from
+\citeauthor{Lloyd92a} \citetext{\citeyear{Lloyd92a}: see
+  {\tref}~\ref{table:modes}}. Autonomous simultaneous self-pollination
+involves pollen that was deposited on the stigma without the action of
+a vector. Alternatively, a pollen vector can facilitate
+self-pollination, either within a flower (facilitated intrafloral
+self-pollination) or between flowers on the same plant
+(geitonogamy). Because the two modes of facilitated self-pollination
+have similar consequences for ovule fates, we refer to the resulting
+embryos jointly as the product of facilitated self-fertilization. In
+addition to the different modes of self-fertilization, ovules can be
+cross-fertilized or not fertilized by the end of flowering
+({\fref}~\ref{fig:fates}).
+
+The diversity of ovule fates depends on the fertilization sequence and
+proportion of ovules that remain unfertilized at each stage in the
+sequence ({\fref}~\ref{fig:fates}). Suppose that prior
+self-fertilization removes a proportion, $p$, of a plant's
+unfertilized ovules. If ovules remain unfertilized once flowers begin
+interacting with pollen vectors (i.e., $p<1$), then proportions $a$,
+$f$ and $x$ of the remaining $(1 - p)O_{T}$ ovules can be involved in
+autonomous simultaneous self-fertilization, facilitated
+self-fertilization (both intrafloral and geitonogamy), and
+cross-fertilization, respectively. We assume that autonomous,
+simultaneous self-fertilization always occurs independently of
+cross-fertilization, as long as some ovules remain unfertilized. In
+contrast, three relations between the incidence of facilitated self-
+and cross-fertilization are possible, depending on the details of
+pollination. First, facilitated self-fertilization could occur
+independently of the delivery of cross-pollen (e.g., geitonogamy in a
+wind-pollinated species), so that augmentation of facilitated
+self-pollination increases $f+x$. Second, facilitated
+self-fertilization may replace cross-fertilization (e.g., geitonogamy
+by an animal that delivers a fixed pollen load), so that $x$ varies
+negatively with $f$. Third, facilitated self-fertilization and
+cross-fertilization could vary positively if self- and
+cross-pollination both increase with each pollinator visit and plants
+experience different pollinator visitation.  An investigation of these
+three possible relations (results not shown) found that they had
+little effect on the general conclusions drawn from the ovule fates
+model. Consequently, although we recognize these three possible
+relations, in practice we consider only autonomous simultaneous
+self-fertilization to simplify the analysis. If any ovules remain
+unfertilized once flowers stop interacting with pollen vectors (i.e.,
+$p<1$ and $a+x<1$), then a fraction, $d$, of the remaining
+$(1-p)(1-a-f-x)O_{T}$ ovules may be involved in delayed
+self-fertilization, with the remaining fraction $(1-d)$ being
+unfertilized. Given the preceding fates, a total of
+\begin{equation}\label{eq:os}
+  O_{S}=(p + [1 - p][a + d\{1 - a - x\}])O_{T}
+\end{equation}
+ovules have been self-fertilized, and
+\begin{equation}\label{eq:ox}
+  O_{X}=(1 - p)xO_{T}
+\end{equation}
+ovules have been cross-fertilized.
+
+Seed development begins once ovules are fertilized. We propose that
+some embryos fail to develop into viable seeds for three reasons:
+genetic death, ``competition'' for resources, and predation
+({\fref}~\ref{fig:fates}). Some self- and cross-fertilized embryos may
+die shortly after fertilization without extracting appreciable
+resources from the ovary, because of the expression of deleterious
+alleles. Specifically, proportions $g_{s}$ and $g_{x}$ of the self-
+and cross-fertilized embryos survive genetic death, with $g_{s}\leq
+g_{x}$, because the greater homozygosity of self-fertilized embryos
+increases the frequency of expression of recessive lethal traits
+(pre-dispersal, or early acting inbreeding depression). In general,
+the magnitude of $g_{s}$ and $g_{x}$ depend on the load of deleterious
+alleles within the population \citep{Charlesworth87,Klekowski88}. Of
+the remaining embryos, proportions $k_{s}$ and $k_{x}$ survive to
+become seeds. These survival proportions depend on the proportion of
+ovules that can mature into seeds given the resources available to the
+maternal plant ($m$), the characteristics of developing embryos, and
+the incidence of seed predation. Relevant embryo characteristics
+include: whether the embryo was self-or cross-fertilized
+\citep{Husband96}; when it was fertilized relative to other embryos
+\citep{UmaShaanker95}; its intrinsic strength as a resource sink, perhaps
+determined genetically \citep{Rigney95}; its relatedness to other embryos
+\citetext{sibling rivalry and kin selection:
+  \citealp{Kress81,UmaShaanker88}}; and maternal ``preference''
+\citetext{offspring choice:
+  \citealp{Casper88,Marshall88,Melser01}}. We will address the
+consequences of the diverse competitive processes and seed predation
+elsewhere. For the purposes of this paper, we consider only the
+aggregate probabilities of successful development by self- and
+cross-fertilized embryos ($k_{s}$ and $k_{x}$, respectively).
+
+\subsection{Limits on seed production}
+A plant's seed production depends on the abundance of three
+components, pollen, ovules and resources, so that its female fertility
+could be pollen-, ovule-, or resource-limited ({\fref}~\ref{fig:limits}A and
+D). Pollen limitation occurs when fewer ovules are fertilized than
+could develop into seeds given the available resources, even if no
+embryos are lost to genetic death ($O_{s}+O_{x}<mO_{T}$:
+{\fref}~\ref{fig:limits}A and D, lightly-shaded area). Ovule
+limitation results when all ovules are fertilized, but too few embryos
+survive genetic deaths to consume the available resources
+($O_{s}g_{s}+O_{x}g_{x}<mO_{T}\leq O_{s}+O_{x}$:
+{\fref}~\ref{fig:limits}A and D, thick solid line). Neither pollen nor
+ovule limitation results in competition for maternal resources, so
+that $k_{s}=k_{x}=1$ in the absence of maternal choice and seed
+predation. Resource limitation results when
+$O_{s}g_{s}+O_{x}g_{x}>mO_{T}$ and all surviving embryos compete for
+maternal resources ({\fref}~\ref{fig:limits}A and D, heavily-shaded
+area).
+
+When maternal resources limit seed production, the probabilities that
+self- and cross-fertilized embryos become seeds, depend on the number
+of seeds that can be produced given the available resources
+($mO_{T}$), the number of embryos that survive genetic death
+($O_{s}g_{s}+O_{x}g_{x}$), and the competitive ability of
+self-fertilized embryos relative to cross-fertilized embryos ($0\leq
+\kappa \leq 1$). We depict competition among developing embryos as a
+stochastic weighted lottery, whereby the ultimate proportion of
+self-fertilized seeds depends on the proportion of surviving embryos
+that were self-fertilized weighted by their relative competitive
+ability. The noncentral hypergeometric distribution \citep{Chesson76}
+describes the distribution of possible outcomes from such a
+process. For this distribution, the expected (mean) number of
+self-fertilized seeds ($E[S_{s}]$) given that $O_{s}g_{s}+O_{x}g_{x}$
+embryos survive genetic death is calculated iteratively according to
+\begin{equation*}
+  q_{i}=q_{i-1}+\frac{(O_{s}g_{s}-q_{i-1})\kappa}{(O_{s}g_{s}-q_{i-1})\kappa +O_{x}g_{x}-(i-q_{i-1}-1)},
+\end{equation*}
+for $i=0$ to $mO_{T}$, where $q_{0}=0$. Overall, the expected
+proportions of self- and cross-fertilized embryos that become seeds,
+given that they survive genetic death are
+\begin{equation*}
+  k_{s}=
+  \begin{cases}
+    1 & \text{if } O_{s}g_{s}+O_{x}g_{x}\leq mO_{T}\\
+    \frac{E[S_{s}]}{O_{s}g_{s}} & \text{if }
+    O_{s}g_{s}+O_{x}g_{x}>mO_{T}
+  \end{cases},
+\end{equation*}
+\begin{equation*}
+  k_{x}=
+  \begin{cases}
+    1 & \text{if } O_{s}g_{s}+O_{x}g_{x}\leq mO_{T}\\
+    \frac{mO_{T}-E[S_{s}]}{O_{x}g_{x}} &\text{if }
+    O_{s}g_{s}+O_{x}g_{x}>mO_{T}
+  \end{cases},
+\end{equation*}
+respectively. Note that if $\kappa =0$, this characterization of
+resource competition describes the widespread phenomenon of cryptic
+self-incompatibility \citep{Bertin89,Cruzan93,Rigney93,Eckert97},
+because a plant produces self-fertilized seed following abundant
+pollination with only self-pollen, whereas it produces only
+cross-fertilized seed after abundant pollination with a mixture of
+self- and cross-pollen.
+
+\subsection{Pollen export}
+Although we are primarily concerned with the fates of ovules and
+maternal fitness in this paper, we cannot ignore the effects of
+selfing on the pollen available for export \citetext{pollen
+  discounting; \citealp{Harder98}; for further discussion of pollen
+  fates, see \citealp{Harder00a}}. In this context, we assume that a
+proportion ($\pi$) of pollen grains that could have been exported are
+used in self-pollination. Consequently, the proportion $1-\pi$ grains
+are exported to the pollen pool
+% and a proportion $\epsilon$ are successfully deposited on
+% stigmas. Therefore, the proportion of pollen grains that are
+% successfully exported is given by the product $(1-\pi)\epsilon$.
+We assume that the outcross siring success of a plant ($O_{\mars}$) is
+determined by the plant's contribution to the total pool of exported
+pollen.
+
+% In this case, the paternal success of individual i in a population
+% of $n$ plants is $\frac{(1-\pi_{i})}{\sum_{j=1}^{n}(1-\pi_{j})}$
+% assuming that all plants have the same efficiency of pollen export
+% ($\epsilon$), but differ in their proportions of discounting
+% self-pollination ($\pi$).
+
+\subsection{Fitness}
+The fitness of a plant that produces $S_{s}=O_{s}g_{s}k_{s}$
+self-fertilized seeds, $S_{x}=O_{x}g_{x}k_{x}$ cross-fertilized seeds,
+and sires $S_{\mars}=O_{\mars}g_{x}k_{x}$ outcrossed seed, equals
+\begin{equation}\label{eq:fitness}
+  w=2S_{s}d_{s}+S_{x}d_{x}+S_{\mars}d_{x},
+\end{equation}
+where $d_{s}$ and $d_{x}$ are the probabilities that self- and
+cross-fertilized seeds establish reproductive offspring,
+respectively. {\eref}~\ref{eq:fitness} recognizes that self-fertilized
+seeds carry two copies of maternal genes, whereas cross-fertilized
+seeds bear only one copy \citep{Fisher41}. In general, $d_{s} \leq
+d_{x}$, due to post-dispersal (late acting) inbreeding
+depression.% Our analysis of mating-system evolution focuses on
+% variation in maternal fitness, because we are interested in the
+% specific consequences of different ovule fates. This approach
+% assumes that all plants have equivalent paternal fitness.
+
+\section{Results of the ovule fates model}
+
+\subsection{Seed production and maternal fitness}
+The outcome of any pattern of ovule fertilization can be quantified by
+either fitness or seed production. Fitness governs the selection of
+ovule fates and so provides an essential evolutionary
+perspective. Seed production is a key demographic variable
+\citetext{e.g., \citealp{Watkinson78,Bakker96}} and provides an
+important ecological perspective. Furthermore, seed production is
+measured easily and frequently. Therefore, we consider both
+perspectives. To focus on the influence of ovule fates on maternal
+fitness, in this section we assume that no pollen discounting occurs
+($\pi =0$). We relax this condition later when we consider invasion
+criteria for the evolution of the modes of selfing.
+
+We illustrate the influence of changes in cross- and
+self-fertilization for an ovary with $O_{T}=100$ ovules, of which
+$mO_{T}=80$ can mature into seeds, given the available
+resources. During flowering, this ovary receives at least 10 pollen
+tubes each of prior self-, simultaneous self-, delayed self- and
+cross-pollen (point 0 in {\fref}~\ref{fig:limits}A and D), unless
+noted otherwise. From this baseline we increase the incidence of
+either self-pollination (transect 0--3 in {\fref}~\ref{fig:limits}A
+and D) or cross-pollination (transect 0--6 in
+{\fref}~\ref{fig:limits}A and D) and assess the consequences for ovule
+fates. Such increases in fertilization can cause complex changes in
+seed production and fitness ({\fref}~\ref{fig:limits}B, C, E and F),
+because early modes of self-fertilization usurp ovules that could have
+been fertilized by later modes. We therefore focus on the effects of
+changing the density of prior self-pollen, as it has the most diverse
+effects on fertilization outcomes. As will be apparent, the relations
+of seed production to increases in later-acting modes of
+self-pollination are less complex.
+
+We consider two cases, in which the proportions of self-fertilized
+embryos surviving genetic death are either $g_{s}=0.3$ or 0.7. In both
+cases, 90\% of cross-fertilized embryos survive genetic death
+($g_{x}=0.9$) and self-fertilized embryos are 70\% as competitive as
+cross-fertilized embryos when resources limit development ($\kappa
+=0.7$). Finally, we assume that selfed seeds are at least half as
+likely to establish adult plants as outcrossed seeds
+($d_{s}/d_{x}>1/2$: specifically $d_{s}=0.7$, $d_{x}=0.9$), because
+this condition allows for the greatest variety of optimal mating
+systems ({\OFMixedMating}). This high survival of selfed seeds
+relative to outcrossed seeds may occur commonly, because
+post-dispersal inbreeding depression tends to be much weaker than that
+acting during seed development in partially outcrossing species
+\citep{Husband96}. As we explain below, the situation with $g_{s}=0.3$
+({\fref}~\ref{fig:limits}A) favors production of a mixture of selfed
+and outcrossed seeds is optimal, whereas that with $g_{s}=0.7$
+({\fref}~\ref{fig:limits}D) favors exclusive selfing.
+
+\subsubsection{Seed production}
+When few ovules have been fertilized, increased receipt of any class
+of compatible pollen alleviates pollen limitation
+({\fref}~\ref{fig:limits}B and E). In this situation, each
+self-fertilized embryo increases expected seed production by $g_{s}$
+seeds ({\fref}~\ref{fig:limits}B and E, dashed lines from the origin
+to point 1) and each cross-fertilization adds $g_{x}$ seeds
+({\fref}~\ref{fig:limits}B and E, solid lines from the origin to point
+4). With sufficient pollination, this relation of seed production to
+fertilization eventually changes for two reasons. If more embryos can
+survive genetic death than can develop given the available maternal
+resources, then seed production ceases to increase when the number of
+fertilizations exceeds the transition from pollen limitation to
+resource limitation ($O_{s}g_{s}+O_{x}g_{x}>mO_{T}$: e.g.,
+{\fref}~\ref{fig:limits}E, point 4). Alternatively, if a plant
+produces so few ovules that not enough embryos survive genetic death
+to compete for maternal resources, the steep relation of seed set to
+increasing fertilization ends once all ovules have been fertilized
+(points 1 and 4 in {\fref}~\ref{fig:limits}B, point 1 in
+{\fref}~\ref{fig:limits}E).
+
+The sign and magnitude of changes in seed set with each additional
+pollen-tube that enters the ovary in excess of the number needed to
+fertilize all ovules depends on the product of two factors: the
+increment in the expected number of cross-fertilizations ($c$) and the
+difference in the probability that cross- and self-fertilized embryos
+survive genetic death ($g_{x}-g_{s}$). First consider the consequences
+of increasing prior self-pollination ({\fref}~\ref{fig:limits}B and E,
+dashed lines). Between points 1 and 2 in {\fref}~\ref{fig:limits}B and
+E, increased prior self-pollination fertilizes ovules that would
+otherwise have been fertilized by delayed self-pollination. Because
+this usurpation does not affect cross-fertilization, $c=0$ and seed
+production is unaffected. Between points 2 and 3, increased
+self-pollination displaces both simultaneous self-fertilization and
+cross-fertilization, which occur with equal frequency in this
+example. Consequently, each additional prior self-fertilization has a
+50\% chance of usurping a later cross-fertilization, so $c=-0.5$ and
+seed production declines until prior self-pollen fertilizes all ovules
+(point 3). Once prior self-pollen tubes fertilize all ovules any
+additional prior self-pollination does not alter either the genetic
+mixture of fertilizations (i.e., $c=0$), or seed set (right of point
+3).
+
+Now consider the consequences of increasing cross-pollination once a
+stigma receives enough pollen to fertilize all ovules
+({\fref}~\ref{fig:limits}B, solid line). Between points 4 and 5, each
+cross-fertilization claims an ovule that would otherwise have waited
+for delayed self-pollination, so $c=1$ and seed set increases by
+$g_{x} - g_{s}$ for each cross-fertilization until no ovules remain for
+delayed self-fertilization (point 5). Between points 5 and 6,
+increased cross-pollination aggravates competition between
+simultaneous self-pollen tubes and outcross pollen tubes for
+fertilizations. In this case, the probability of an additional
+outcross pollen tube fertilizing an ovule is
+$c=1/(P_{A} + P_{X})$, so that seed set increases weakly at an
+ever-diminishing rate toward an asymptote at which all ovules that
+remain unfertilized after prior self-pollination are cross-fertilized
+($O_{T} - O_{P}$). How closely this asymptote is approached depends on
+the number of embryos that survive genetic death and can mature into
+seeds ($mO_{T}$), given the available resources. In the example in
+{\fref}~\ref{fig:limits}B (solid line) $mO_{T} < O_{T} - O_{P}$, so
+resource limitation stops this increase before the asymptote is
+reached (point 6).
+
+The relations of seed production to cross- and self-pollination
+described above apply generally, as long as self-fertilized embryos
+survive genetic death less frequently than cross-fertilized embryos
+($g_{s} < g_{x}$) and the proportion of ovules that could mature into
+seeds lies between the proportions of self-fertilized and
+cross-fertilized embryos that survive genetic death ($g_{s} < m < 
+g_{x}$). Under these conditions, maximum production of
+cross-fertilized seed is resource limited, whereas that of
+self-fertilized seed is ovule limited, so that extensive
+self-fertilization results in lower seed production than extensive
+cross-fertilization. Consequently, seed set in this situation is
+maximized by exclusive cross-fertilization, which limits the loss of
+embryos to genetic death. This outcome would also arise if production
+of both cross-fertilized and self-fertilized seeds was ovule limited,
+as long as cross-fertilized seeds are more likely to survive genetic
+death than self-fertilized seeds ($g_{s}<g_{x}<m$).
+
+\subsubsection{Maternal fitness}
+The consequences of ovule fates for fitness are driven by the
+preceding effects on seed production, which are modified by the
+probabilities of seedling establishment ($d_{s}$ and $d_{x}$) and the
+twofold advantage of viable selfed offspring
+({\fref}~\ref{fig:limits}C and F). As with seed set, under pollen
+limitation ($O_{s} + O_{x} < mO_{T}$) fitness varies linearly with
+pollen receipt until either seed set becomes resource limited
+($O_{s}g_{s} + O_{x}g_{x} > mO_{T}$; {\fref}~\ref{fig:limits}F, point
+4) or all ovules are fertilized ({\fref}~\ref{fig:limits}F, point 1;
+{\fref}~\ref{fig:limits}C, point 1 and 4), although the slope of this
+relation is now $2g_{s}d_{s}$ for the addition of self-pollen and
+$g_{x}d_{x}$ for increased cross-pollination. The effects of further
+increases in pollen receipt depend on the product of two factors: the
+increment in the expected number of cross-fertilizations ($c$) and the
+difference in the expected fitness of cross- and self-fertilized
+embryos ($g_{x}k_{x}d_{x} - 2g_{s}k_{s}d_{s}$).
+
+When individual selfed zygotes are less valuable to the maternal plant
+than an outcrossed zygote ($2g_{s}d_{s}<g_{x}d_{x}$), the general
+relation of fitness to increasing self- and cross-fertilization
+essentially parallels that described above for seed production
+(compare {\fref}~\ref{fig:limits}B and C). The one exception occurs
+with increasing cross-fertilization if enough outcrossed embryos
+survive genetic death that seed production becomes resource limited
+(point 6). In this case, seed output is fixed by resource
+availability, rather than genetic death of embryos, so that different
+combinations of selfed and outcrossed seeds can maximize seed
+production. However, these different combinations have unequal
+maternal fitness, because a selfed seed that has survived genetic
+death is more valuable than an outcrossed seed, as long as
+$2d_{s}>d_{x}$. Given this condition and $2g_{s}d_{s}<g_{x}d_{x}$ and
+$g_{s}<m< g_{x}$, maternal fitness is maximized if a plant has just
+enough ovules cross-fertilized to maximize seed set and it
+self-fertilizes the remainder ({\fref}~\ref{fig:limits}C, point 6;
+also see {\OFMixedMating}). However, fitness changes very gradually
+with changes in cross-fertilization near this transition
+({\fref}~\ref{fig:limits}C), so that a slight deviation from the
+optimal mixed mating system would have little fitness consequence.
+
+The relations of seed production and maternal fitness differ more when
+selfed zygotes are more valuable than outcrossed zygotes
+($2g_{s}d_{s}>g_{x}d_{x}$: compare {\fref}~\ref{fig:limits}E and
+F). In this case, $g_{x}k_{x}d_{x}-2g_{s}k_{s}d_{s}<0$, so that
+increases in self- and cross-pollination cause opposite changes in
+maternal fitness ({\fref}~\ref{fig:limits}F) to those described above
+for seed production ({\fref}~\ref{fig:limits}E) when seed production
+is not pollen limited. The advantage of replacing an outcrossed embryo
+with a selfed embryo in this situation is evident in two aspects of
+{\fref}~\ref{fig:limits}F. First, exclusive self-fertilization is
+favored (dashed line above solid line), even though it does not
+maximize seed production. Second, maternal fitness declines as
+cross-fertilization increases beyond the number needed to invoke
+resource competition (point 4). Specifically, increased
+cross-pollination initially aggravates the resource competition
+experienced by selfed embryos that survive genetic death until all
+ovules are fertilized (between points 4 and 5), then usurps ovules
+that could have been fertilized by delayed self-pollen (between points
+5 and 6), and eventually competes with more beneficial simultaneous
+self-pollen for fertilizations (right of point 6). Clearly, seed
+production is a poor measure of evolutionary performance in this
+situation.
+
+\subsection{Mating system parameters}
+Once seed development is complete, a plant's total production of self-
+and cross-fertilized seeds equals $S_{s}=O_{s}g_{s}k_{s}$ and
+$S_{x}=O_{x}g_{x}k_{x}$, respectively. As a result, the proportion of
+seeds that are cross-fertilized is
+\begin{equation*}
+  t=
+  \begin{cases}
+    \frac{O_{x}g_{x}}{O_{s}g_{s}+O_{x}g_{x}} & \text{if } O_{s}g_{s}+O_{x}g_{x}\leq mO_{T}\\
+    \frac{O_{x}g_{x}k_{x}}{O_{s}g_{s}k_{s}+O_{x}g_{x}k_{x}} &\text{if
+    } O_{s}g_{s}+O_{x}g_{x}>mO_{T}
+  \end{cases}
+\end{equation*}
+
+Differential genetic death ($g_{s}<g_{x}$) and/or resource competition
+($k_{s}<k_{x}<1$) result in self-fertilized embryos having a lower
+probability of becoming a seed than cross-fertilized
+embryos. Inbreeding depression represents this proportional reduction
+in fitness, $\delta=(w_{x}-w_{s})/w_{x}$, where $w_{x}$ and $w_{s}$
+are the respective fitnesses of cross- and self-fertilized progeny
+\citep{Charlesworth87}. According to our model, the probability that a
+self-fertilized ovule matures into a seed is $g_{s}k_{s}$ and the
+corresponding probability for a cross-fertilized ovule is
+$g_{x}k_{x}$. Therefore, the inbreeding depression experienced during
+seed maturation is
+\begin{equation*}
+  \delta=\frac{g_{x}k_{x}-g_{s}k_{s}}{g_{x}k_{x}}
+\end{equation*}
+
+When seed production is pollen or ovule limited
+($O_{s}g_{s}+O_{x}g_{x} \leqslant mO_{T}$), inbreeding depression
+depends only on the relative genetic losses for self- and
+cross-fertilized ovules as $k_{s}=k_{x}=1$. If instead, resource
+availability limits the production of both self- and cross-fertilized
+seeds ($O_{s}g_{s}+O_{x}g_{x}>mO_{T}$), inbreeding depression also
+depends on the relative competitive abilities of self- and
+cross-fertilized ovules ($\kappa$).
+
+\subsection{Mating-system evolution}
+If plants do not differ in pollen export, fitness differences depend
+on seed production, seedling establishment, and the two-fold
+contribution of maternal genes by self-fertilized seeds compared to
+cross-fertilized seeds,
+\begin{equation*}
+  w=2O_{s}g_{s}k_{s}d_{s} + O_{x}g_{x}k_{x}d_{x}.
+\end{equation*}
+
+Harder et al. ({\OFMixedMating}) considers the influence of the mating
+system on maternal fitness. Here we summarize the major conclusions of
+that analysis. First, maternal fitness is maximized when all ovules
+are fertilized, so that $O_{s}^{*}+O_{x}^{*}=O_{T}$. Second,
+$g_{s}/g_{x}=0.5$ is a threshold between whether maternal fitness is
+maximized by producing as many selfed seeds as possible
+($g_{s}/g_{x}>0.5$, $t^{*}=0$), or by producing some outcrossed seeds
+($g_{s}/g_{x}<0.5$, $0<t^{*}\leqslant 1$). When $g_{s}/g_{x}>0.5$ the
+twofold genetic contribution of selfed seeds exceeds the relative
+chance of genetic death and so they are more valuable than outcrossed
+seeds. In contrast, when $g_{s}/g_{x}<0.5$ selfed seeds have such a
+high probability of genetic death and more genetic contributions can
+be achieved through outcrossed embryos. Third, if some outcrossing is
+favored ($g_{s}/g_{x}<0.5$), then $g_{x}=m$ is a threshold between
+whether production of only outcrossed seeds ($t^{*}=1$,
+$g_{x}\leqslant m$) or a mixture of selfed and outcrossed seeds
+($0<t^{*}<1$, $g_{x}>m$) is optimal. In the latter case, the optimal
+maternal outcrossing rate,
+\begin{equation}\label{eq:mixedMating}
+  t^{*}=\frac{g_{x}}{m}\frac{m-g_{s}}{g_{x}-g_{s}},
+\end{equation}
+increases as the maximum proportion of ovules that can mature into
+seeds ($m$) approaches the proportion of outcrossed ovules that
+survive genetic death ($g_{x}$). When mixed mating is optimal, the
+numbers of selfed and outcrossed embryos that survive genetic losses
+exactly equals the number of seeds that can be matured given the
+available resources, so that there is no competition for those
+resources. An increase in self-fertilization above the optimum would
+increase genetic losses, so that some resources would not be used in
+seed production (ovule limitation). In contrast, an increase in
+cross-fertilization would increase competitive losses of selfed
+embryos that have survived genetic losses and so are quite valuable,
+given that they possess two maternal haploid genomes.
+
+This characterization of the optimal mating system does not
+incorporate the modes of
+self-fertilization. {\fref}~\ref{fig:mixedMating} plots different
+sources of self-pollen delivered at the optimal ratio with
+cross-pollen calculated from {\eref}~\ref{eq:mixedMating} above for
+$g_{s}=0.3$ and other parameters as in {\fref}~\ref{fig:limits}. Under
+the conditions depicted, the optimal ratio of cross- to self-pollen is
+0.75. {\fref}~\ref{fig:mixedMating}A plots the relation of the
+seed-ovule ratio to the pollen-ovule ratio and
+{\fref}~\ref{fig:mixedMating}B plots the relation of fitness, measured
+as the number of genomes/ovule, and the pollen-ovule ratio. Each line
+represents a different source of self-pollen. As examples, the
+$\triangledown$ symbol plots delayed self-pollen and cross-pollen
+deposited at the appropriate ratio and the $\circ$ symbol plots equal
+allocations of the three modes of self-fertilization to the optimal
+ratio. {\fref}~\ref{fig:mixedMating} shows that the modes of
+self-fertilization have indistinguishable effects on seed set and
+fitness under pollen limitation. The modes diverge once the
+pollen-ovule ratio reaches one. {\fref}~\ref{fig:mixedMating}A
+shows that increases in prior self-pollen beyond the pollen-limitation
+threshold causes a decline in seed production as ovule limitation
+intensifies to a limit of $g_{s}O_{T}$ seeds. For the other modes of
+self-fertilization, seed production plateaus at $mO_{T}$ as
+cross-pollen can either compete with simultaneous self-pollen or
+preempt delayed self-pollen to avoid ovule limitation of seed
+production. Eventually, however, prior self-pollen deposition is
+sufficient to preempt cross-pollen with mixed pollen deposition. Seed
+production then becomes ovule limited as the loss of self-fertilized
+embryos from genetic deaths reduces seed production below
+$mO$. {\fref}~\ref{fig:mixedMating}B shows that prior,
+delayed, and mixed sources of self-pollen each cause a decline in
+fitness beyond the pollen-limitation threshold. Prior self-pollen
+preempts cross-pollen so that, although pollen is received at the
+optimal ratio, the optimal ratio of fertilized embryos is not
+produced. Consequently, fitness declines linearly with prior
+self-pollen and cross-pollen beyond a pollen-ovule ratio of 1 and
+ultimately yields a fitness value of $2g_{s}O_{T}$. In the case of
+delayed self-pollen, once pollen limitation is alleviated cross-pollen
+preempts delayed pollen. Given the parameters of
+{\fref}~\ref{fig:mixedMating}, once this preemption occurs seed
+production exceeds the resource threshold ($mO_{T}$) and delayed
+embryos are lost to resource competition. This continues until all
+ovules are cross-fertilized (with 100 cross-pollen and 40 delayed
+self-pollen grains) which gives a fitness value of $g_{x}mO_{T}$. As
+with delayed self-pollen deposition, mixed pollen deposition beyond
+the pollen-limitation threshold invokes resource competition as
+sufficient cross-fertilized embryos are produced to exceed
+$mO_{T}$. However, in this case once cross-pollen has preempted
+delayed self-pollen, prior self-pollen preempts and simultaneous
+self-pollen competes with cross-pollen. Consequently, the production
+of self-fertilized ovules increases and since many of these are lost
+to genetic deaths, competition for resources lessens. Ultimately,
+fitness recovers the maximum found at the threshold between pollen and
+resource limitation and is then compromised by the transition from
+resource to ovule limitation causing a new fitness decline that
+eventually stops at $2g_{s}O_{T}$ once all ovules are fertilized by
+prior self-pollen. {\fref}~\ref{fig:ternary} plots the optimal mating
+system as a combination of cross-pollen and the three modes of
+self-pollen. As indicated by the numerous points of the plots, maximum
+maternal fitness can be realized through a variety of pollen
+contributions.
+
+\subsection{Invasion criteria and pollen discounting}
+To explore the influence of ovule fates and pollen discounting on
+mating system evolution, we consider the fitness differential between
+two phenotypes (a mutant and the resident phenotypes) that differ in
+their patterns of self-fertilization:
+\begin{equation}\label{eq:differential}
+  w_{2}-w_{1}=2(S_{s2}-S_{s1})d_{s}+(S_{x2}-S_{x1})d_{x}+(S_{\mars2}-S_{\mars1})d_{x},
+\end{equation}
+and determine the conditions that allow phenotype 2 (the mutant) to
+invade a population of phenotype 1 (the resident; $w_{2}-w_{1}>0$). We
+assume that genetic load is the same for each phenotype (i.e.,
+$g_{s2}=g_{s1}$). Also, to simplify the analysis, we consider the case
+where $\kappa =1$, so that
+$k_{s}=k_{x}=\frac{mO}{O_{s}g_{s}+O_{x}g_{x}}$. For each mode of
+selfing, we consider four invasion scenarios: no pollen discounting
+and no resource competition; pollen discounting and no resource
+competition; no pollen discounting and resource competition; and,
+pollen discounting and resource competition.
+
+\subsubsection{Non-discounting selfing}
+Before considering specific modes of selfing, we analyze the general
+conditions where selfing does not cause any pollen discounting
+($\pi=0$). In these cases, $S_{\mars2}=S_{\mars1}$ and only maternal
+fitness differs between the phenotypes. In the absence of resource
+competition, $k_{s}=k_{x}=1$ and $w_{2}-w_{1}>0$ if,
+\begin{equation}\label{eq:noDiscountNoResource}
+  \frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{O_{x1}-O_{x2}}{O_{s2}-O_{s1}}.
+\end{equation}
+
+The mutant can invade if the ratio of twice the probability of
+selfed to crossed offspring survival exceeds the ratio of the mutant's
+decrease in cross-fertilization to increase in self-fertilization. In
+other words, if self-fertilization reduces cross-fertilization, selfed
+offspring must be at least half as fit as crossed offspring. This is
+equivalent to the classic inbreeding depression threshold of 1/2
+\citep{Lloyd79,Lande85}. Furthermore, if increases in
+self-fertilization increase the number of fertilized ovules without
+compromising outcrossed embryo production, self-fertilization is
+favoured. This is the reproductive assurance hypothesis for the
+evolution of selfing.
+
+When resource competition occurs, the values of $k$ change with the
+number of ovules that are fertilized. Consequently we cannot assume
+that the mutant and resident phenotypes experience equivalent
+competition for resources. If $w_{2}-w_{1}>0$, then
+\begin{equation*}
+  \frac{2O_{s2}g_{s}d_{s}+O_{x2}g_{x}d_{x}}{O_{s2}g_{s}+O_{x2}g_{x}}mO - \frac{2O_{s1}g_{s}d_{s}+O_{x1}g_{x}d_{x}}{O_{s1}g_{s}+O_{x1}g_{x}}mO>0,
+\end{equation*}
+which simplifies to
+\begin{equation}\label{eq:noDiscountResource}
+  (O_{s2}O_{x1}-O_{s1}O_{x2})(2d_{s}-d_{x})>0.
+\end{equation}
+
+{\eref}~\ref{eq:noDiscountResource} is satisfied if
+\begin{equation}\label{eq:noDiscountResourceCondition1}
+  2d_{s}>d_{x} \text{ and } \frac{O_{s2}}{O_{x2}}>\frac{O_{s1}}{O_{x1}},
+\end{equation}
+or, if
+\begin{equation}\label{eq:noDiscountResourceCondition2}
+  2d_{s}<d_{x} \text{ and } \frac{O_{s2}}{O_{x2}}<\frac{O_{s1}}{O_{x1}}.
+\end{equation}
+
+The conditions of {\eref}~\ref{eq:noDiscountResourceCondition1} mean
+that if the post-dispersal survival of selfed offspring is greater
+than half that of crossed offspring, the mutant can invade if the
+increase in selfing increases the ratio of selfed to crossed
+fertilizations. If the post-dispersal condition of
+{\eref}~\ref{eq:noDiscountResourceCondition1} is not satisfied, then
+the mutant can invade given the second condition of
+{\eref}~\ref{eq:noDiscountResourceCondition2}. However, this condition
+states that self-fertilization must increase the frequency of
+cross-fertilization. Given that this is not possible in our model,
+only the conditions of {\eref}~\ref{eq:noDiscountResourceCondition1}
+govern the ability of the non-discounting mutant to invade with
+resource competition. Consequently, with resource competition the
+threshold for the invasion of a selfing mutant is reduced from
+$\frac{g_{s}d_{s}}{g_{x}d_{x}} > \frac{1}{2}$ to $\frac{d_{s}}{d_{x}}
+> \frac{1}{2}$ (compare {\eref}~\eqref{eq:noDiscountResource} and {\eref}~\eqref{eq:noDiscountNoResource}
+
+\subsubsection{Discounting selfing}
+We now consider the general invasion conditions for mutants with
+discounting self-fertilization. In the absence of resource
+competition, the selection differential ($w_{2}-w_{1}$) is greater
+than zero if
+\begin{equation}\label{eq:discountNoResource}
+  \frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{(O_{x1}-\pi_{1})-(O_{x2}-\pi_{2})}{O_{s2}-O_{s1}}.
+\end{equation}
+The right side of {\eref}~\eqref{eq:discountNoResource} is greater than
+the right side of {\eref}~\eqref{eq:noDiscountNoResource} whenever
+$\pi_{2}>\pi_{1}$. Consequently, as expected, discounting makes it
+more difficult for a selfing mutant to invade the resident population.
+
+With resource competition, the invasion condition for discounting
+selfing is complex. The condition simplifies to:
+\begin{equation}\label{eq:discountResource}
+  \frac{d_{s}}{d_{x}}>\frac{1}{2}+\frac{(\pi_{2}-\pi_{1})(g_{s}O_{s2}+g_{x}O_{x2})}{2g_{s}(O_{s2}O_{x1}-O_{s1}O_{x2})}.
+\end{equation}
+The second term of the right hand side of
+{\eref}~\eqref{eq:discountResource} determines if discounting makes the
+evolution of selfing easier with resource competition (compare with
+{\eref}~\eqref{eq:noDiscountResource}). This term is negative only if
+$\pi_{2}<\pi_{1}$ and
+$\frac{O_{s2}}{O_{x2}}<\frac{O_{s1}}{O_{x1}}$. Since neither of these
+conditions can be met, discounting also reduces the opportunities for
+a selfing mutant to invade the resident population under resource
+limitation.
+
+\subsubsection{Delayed selfing}
+Although delayed selfing is last in the sequence of selfing modes,
+here we consider it first because of its relative simplicity. Since
+delayed selfing cannot discount outcross pollen, $\pi_{1}=\pi_{2}=0$
+and $S_{\mars2}=S_{\mars1}$. We consider a potential invader with a
+fraction of delayed selfing $d_{2}=d_{1}+\Delta$ and substitute
+{\eref}~\eqref{eq:os} and {\eref}~\eqref{eq:ox} into
+{\eref}~\eqref{eq:noDiscountNoResource} to obtain $g_{s}d_{s}>0$. So, a
+delayed selfing mutant can invade the resident population, in the
+absence of resource competition, if selfed offspring have any
+fitness. This is the classic reproductive assurance hypothesis for the
+evolution of selfing \citep{Darwin76,Herlihy02}. However, with
+resource competition, the conditions of
+{\eref}~\eqref{eq:noDiscountResource} are only favoured if the
+post-dispersal survival of selfed offspring is greater than twice that
+of crossed offspring. Consequently, the general expectation that
+delayed selfing is always favoured \citep{Lloyd79} is not true if
+embryos compete for resources.
+
+\subsubsection{Simultaneous selfing}
+When considering the invasion of simultaneous selfing, we assume that
+simultaneous selfing necessarily decreases cross fertilizations, so
+that for the mutant $a_{2}=a_{1}+\Delta$ and $x_{2}=x_{1}-\Delta$. In
+the absence of both discounting and resource competition, substituting
+$a_{2}$ and $a_{1}$ into {\eref}~\eqref{eq:os}, $x_{2}$ and $x_{1}$ into
+{\eref}~\eqref{eq:ox}, and solving {\eref}~\eqref{eq:noDiscountNoResource}
+yields $\frac{g_{s}d_{s}}{g_{x}d_{x}}>\frac{1}{2}$; again the classic
+inbreeding depression threshold. With resource competition,
+{\eref}~\eqref{eq:noDiscountResource} requires that simultaneous selfing
+increases the ratio of selfed to outcrossed seed production and that
+$\frac{d_{s}}{d_{x}}>\frac{1}{2}$.
+
+With pollen discounting, we have $a_{2}=a_{1}+\Delta$,
+$x_{2}=x_{1}-\Delta$, and $\pi_{2}=\pi_{1}+\Delta$. Substituting these
+values into {\eref}~\eqref{eq:os} and {\eref}~\eqref{eq:ox} and solving
+{\eref}~\eqref{eq:discountNoResource} yields
+\begin{equation*}
+  \frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{p}{1-p}.
+\end{equation*}
+As the proportion of ovules fertilized by prior self-pollen
+increases, the conditions for the invasion of simultaneous selfing become
+increasingly stringent. This is because increased prior selfing
+reduces the number of unfertilized ovules and, consequently, reduces
+the opportunity for the mutant to alleviate pollen limitation.
+
+Adding resource competition and pollen discounting greatly complicates
+the conditions that favour the invasion of simultaneous
+selfing. Substituting {\eref}~\eqref{eq:os} and {\eref}~\eqref{eq:ox} into
+{\eref}~\eqref{eq:discountResource} gives the condition
+\begin{equation}\label{eq:simultaneousDiscountResource}
+  \frac{d_{s}}{d_{x}}>\frac{1}{2}+\frac{1}{2}\cdot\frac{g_{s}[p+(1-p)(a_{1}+\Delta)]+g_{x}(1-p)(x_{1}+\Delta)}{g_{s}(1-p)[(1-p)(x_{1}+a_{1})+p]}.
+\end{equation}
+As described with {\eref}~\eqref{eq:discountResource},
+{\eref}~\eqref{eq:simultaneousDiscountResource} generally shows that
+discounting and resource competition make the invasion conditions more
+stringent. However, the magnitude of this change depends on the
+parameter values of {\eref}~\eqref{eq:simultaneousDiscountResource}.
+
+% ??Is this second option useful??  The second option for simultaneous
+% selfing is that it occurs independent of cross fertilizations, so
+% that for the mutant $a_{2}=a_{1}+\Delta$, $x_{2}=x_{1}$, and
+% $\pi_{2}=\pi_{1}+\Delta$. Without discounting or resource
+% competition, the mutant can invade if
+% \begin{equation}
+%\frac{g_{s}d_{s}}{g_{x}d_{x}}(1-p)(1-d)>0
+%\end{equation}
+%These conditions are satisfied if either prior or delayed selfing are
+% not complete, meaning that ovules remain unfertilized in the
+% resident population. Once again, this is reproductive
+% assurance. With resource competition, the conditions of
+% {\eref}~\eqref{eq:noDiscountResource} require that $p<1$ and
+% $0<\Delta<x$. These conditions are also met if ovules remain
+% unfertilized in the resident population.
+
+% Now, we consider the effect of pollen discounting. Without resource
+% competition, substituting $a_{2}$, $a_{1}$, $\pi_{2}$, and $\pi_{1}$
+% into {\eref}~\eqref{eq:discountNoResource} yields
+% \begin{equation}
+%\frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{1}{1-p}
+%\end{equation}
+%The conditions for resource competition from
+% {\eref}~\eqref{eq:discountResource} are
+% \begin{equation}
+%\frac{d_{s}}{d_{x}}>\frac{1}{2}+\frac{1}{2}\cdot\frac{g_{s}[p+(1-p)(a_{1}+\Delta)]+g_{x}(1-p)x_{1}}{g_{s}(p-1)^{2}x}
+%\end{equation}
+
+\subsubsection{Prior selfing}
+In the case of prior selfing, the mutant self fertilizes with a
+frequency $p_{2}=p_{1}+\Delta$. In the absence of both pollen
+discounting and resource competition,
+{\eref}~\eqref{eq:noDiscountNoResource} simplifies to
+\begin{equation}\label{eq:priorNoDiscountNoResource}
+  \frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{x}{1-a}.
+\end{equation}
+This condition increases the threshold inbreeding depression for the
+invasion of selfing above 1/2 when ovules remain unfertilized in the
+resident population. This result was alluded to by \citet{Lloyd79} but
+not developed. Note that the right hand side of this condition can
+never exceed 1/2, so when inbreeding depression is less than 1/2
+complete prior selfing is favoured. As with the previous analyses,
+invoking resource competition requires that prior selfing increases
+the ratio of selfed to outcrossed seed production and that
+$\frac{d_{s}}{d_{x}}>\frac{1}{2}$.
+
+If prior selfing causes pollen discounting, but not resource
+competition, the condition for invasion of the mutant phenotype is
+\begin{equation}\label{eq:priorDiscountNoResource}
+  \frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{1-x}{1-a}.
+\end{equation}
+A comparison of {\eref}~\eqref{eq:priorNoDiscountNoResource} and
+{\eref}~\eqref{eq:priorDiscountNoResource} again shows that pollen
+discounting reduces the fitness of the mutant.
+
+With resource competition and pollen discounting, the condition
+becomes
+\begin{equation}\label{eq:priorDicountResource}
+  \frac{d_{s}}{d_{x}}>\frac{1}{2}+\frac{1}{2}\cdot\frac{g_{s}[p_{1}+\Delta+a(1-p_{1}-\Delta)]+g_{x}(1-p_{1}-\Delta)}{g_{s}x}.
+\end{equation}
+As with {\eref}~\eqref{eq:simultaneousDiscountResource},
+{\eref}~\eqref{eq:priorDicountResource} shows that invasion is less
+likely with discounting and resource competition. However, no further,
+general predictions are possible.
+
+\section{Dynamic state variable model}
+In the previous models, we assumed that self pollen arrives before,
+simultaneous with, or after cross pollen and considered the
+consequences of these schedules of pollen delivery. We now take a
+different, but complimentary, approach by constructing a dynamic state
+variable model \citep{Clark00} of pollen delivery and allow the plant
+to `choose' the optimal pollination strategy. This dynamic model
+considers a plant with 50 ovules that flowers for ten days and each
+day a plant chooses to cross- or self-fertilize. If the plant chooses
+to cross-fertilize, a pollinator will arrive with some given
+probability and deposit a specific number of pollen grains. The
+dynamic model also incorporates a facilitated selfing parameter, so
+that some fraction of the deposited grains are self grains. If the
+plant chooses to self-fertilize, a specific number of self grains are
+deposited and cross-pollen is excluded for that time interval. For a
+given set of parameter values, the dynamic model begins at the last
+time interval and calculates the decision that, for a given number of
+self- and cross-fertilized ovules, would yield the maximum fitness
+value. These decisions than propagate backwards in time, to create a
+matrix of optimal decisions for each time interval and each
+combination of ovule fertilizations, assuming that optimal decisions
+are made in each future interval. Once we construct a decision matrix
+for a given set of parameters, we then place a plant at the origin
+with no fertilized ovules and track the trajectory of mating outcomes
+as it makes optimal decisions at each time step
+({\fref}~\ref{fig:trajectory}). Whenever a plant chooses to cross
+fertilize, we draw a random value from a Poisson distribution, with a
+mean of the expected cross-pollen deposition, to add variation to the
+mating outcomes. We implemented this model in R \citep{R} and the
+source code is available by request to the authors.
+
+\section{Results of the dynamic model}
+Representative trajectories from the dynamic model are presented in
+{\fref}~\ref{fig:trajectory}. In \ref{fig:trajectory}A, the proportion
+of facilitated self-pollen is set to the optimal ratio of cross- to
+self-fertilizations (see {\eref}~\eqref{eq:mixedMating}). Unlike prior
+self-pollen, simultaneous self-pollen does not pre-empt cross
+pollen. Furthermore, cross-pollen cannot pre-empt simultaneous
+self-pollen as efficiently as it can pre-empt delayed
+self-pollen. Consequently, with this set of parameter values, the
+plant continuously chooses cross pollination and moves almost directly
+to the optimal mating system. A comparison of \ref{fig:trajectory}B
+and C shows the response of plants to a switch from high cross-pollen
+and low self-pollen delivery to low cross-pollen and high self-pollen
+delivery. In both cases, plants choose to cross-fertilize until the
+last time step, when they switch to delayed
+self-fertilization. Although these patterns mimic the predictions of
+reproductive assurance, note that the plants are choosing to
+self-fertilize to reach the optimal mating system. They are not simply
+maximizing seed production with low quality selfed
+offspring. Comparing panels B and D demonstrates the effect of poor
+pollinator reliability on the mating trajectory. Although the amount
+of pollen deposited per visit is the same in both panels, since
+cross-pollen delivery is rare, plants rely on self-pollen to fertilize
+ovules until the last time step. In the case of panel D, the plant is
+relying on reproductive assurance offered by selfing to fertilize
+ovules. Panel E depicts mating trajectories when cross-pollen is
+delivered reliably and both cross- and self-pollen arrive in small
+increments.%  ??This panel shows a variety of outcomes. In particular,
+% since the optimal mating system is predominantly outcrossing, plants
+% generally choose to cross-fertilize. However, if cross-pollen does not
+% arrive with sufficient frequency, the plants will switch to selfing to
+% compensate.??
+Finally, panel F demonstrates what could be considered a
+classic scenario for reproductive assurance. The plant receives very
+rare cross-pollen and large amounts of self-pollen. In this case, the
+plant waits for cross-pollen to arrive and then, generally,
+self-fertilizes at the end. Panel D represents the potential for
+reproductive assurance in plants that can self-fertilize in small
+increments \citetext{e.g., the changes in herkogamy found in
+  \species{Aquilegia canadensis}; \citealp{Griffin00}} and panel F for
+plants that self-fertilize in large amounts \citetext{e.g., delayed
+  selfing through corolla abscission in \species{Mimulus guttatus};
+  \citealp{Dole90}}.
+
+\section{Discussion}
+
+\subsection{Limits on fitness}
+Our model of ovule fates identifies three potential limits on maternal
+fitness: resource limitation, pollen limitation, and ovule
+limitation. \citet{Haig88} argued that seed production represents a
+compromise between resource and pollen limitation such that maternal
+fitness is, on average, limited by both simultaneously. Our
+identification of ovule limitation of maternal fitness shows that this
+argument is incomplete. In general, maternal fitness is maximized when
+all ovules are fertilized ($O_{x}+O_{s}=1$) so that pollen limitation
+is never an optimal strategy. Rather, as argued in Harder et al
+({\OFMixedMating}), the appropriate trade-off is between ovule and
+resource limitation. This proposal is supported by the empirical data
+of {\fref}~\ref{fig:empirical}. If plants are chronically pollen
+limited, supplemental addition of cross-pollen should enhance seed
+set. However, the relationship between ovule and seed production is
+statistically indistinguishable for open- and cross-pollinated
+plants. The significantly smaller intercept for the self-pollinated plants
+indicates that the loss of embryos to genetic deaths is a common
+feature of plant reproduction. Consequently, empirical investigations
+of ovule limitation may provide new insights into the evolutionary
+ecology of plant reproduction.
+
+Rather than focusing on pollen limitation \citep{Ashman04a}, we argue
+that a plant's seed production and maternal fitness contribution can
+be limited by the quantity and/or quality of pollen that it receives
+\citep{Ramsey00}. In our model, this occurs when fewer than $mO_{T}$
+ovules are fertilized and survive genetic losses, rather than simply
+when there are some unfertilized ovules. Furthermore, ovule limitation
+can reduce a plant's seed production below the maximum possible even
+with sufficient pollen receipt. For example, suppose that all of a
+plant's ovules are fertilized, with 70\% cross-fertilization and 30\%
+self-fertilization, and that 90\% of cross-fertilized embryos develop
+into seeds ($g_{x}=0.9$) compared to only 60\% for self-fertilized
+embryos ($g_{s}=0.6$). In this case, total seed production equals
+($0.7[0.9]+0.3[0.6])O_{T}=0.81O_{T}$. If instead, all of the embryos
+had been cross fertilized, then seed production would have been
+$0.9O_{T}$, an 11\% improvement, even though all ovules were
+fertilized in both cases. However, note that the first situation
+results in a 10\% higher maternal contribution to fitness (0.99 versus
+0.9), because self-fertilized seeds contribute two maternal genomes
+compared to one for cross-fertilized seeds (in the absence of
+subsequent inbreeding depression after seed dispersal). Therefore,
+whether pollen quality limits maternal reproductive output can depend
+on perspective (seed production versus genome
+contributions). Regardless of perspective, the overall occurrence of
+pollen limitation is subject to diverse influences on seed production,
+including; the amount of pollen received by stigmas, the composition
+of that pollen, and the relative success of different classes of
+embryos in surviving genetic and competitive losses.
+
+These three limits on seed production are influenced by the diversity
+of pollen received. The least diverse response is provided by pollen
+limitation. As demonstrated in figs.~\ref{fig:limits} and
+\ref{fig:mixedMating} any source of pollen can alleviate pollen
+limitation. Furthermore, our dynamic model shows that a variety of
+outcomes are possible ({\fref}~\ref{fig:trajectory}) if the goal is to
+fertilize all of the available ovules without concern to the ratio of
+cross- and self-fertilized embryos produced. Resource limitation is
+invoked when embryos are fertilized in excess of the resources
+available for their maturation. According to our model, competition
+for resources results in competitive losses of fertilized embryos. If
+$\kappa<1$, these losses occur most heavily among the valuable
+self-fertilized embryos that survive genetic deaths. Regardless of the
+value of $\kappa$, the loss of embryos waste both allocated resources
+and captured pollen. Given that $g_{x}>g_{s}$, cross-fertilization is
+more likely to invoke resource competition. This is illustrated in the
+solid line of {\fref}~\ref{fig:limits}F and the equal mix of
+self-pollen line of {\fref}~\ref{fig:mixedMating}B. Consequently, we
+might expect prior self-pollination to be favoured in contexts that
+favour reductions in resource competition. In contrast, since genetic
+deaths are more likely among self-fertilized embryos, ovule limitation
+is more common with predominant self-fertilization. Therefore,
+predominant delayed self-pollination would alleviate ovule
+limitation. In fact, the tension between these two limits provides the
+prediction that mixed mating is an optimum mating strategy in some
+circumstances.
+
+\subsection{Evolution of the mating system}
+Our model of ovule fates provides several important insights into
+mating system evolution in flowering plants. These insights include a
+clarification of the terms seed and ovule discounting, the evolution
+of mixed mating, and the importance of reproductive assurance.
+Self-pollination can often reduce (discount) opportunities for
+producing cross-fertilized seeds. However, there is a distinction
+between ovule and seed discounting. Ovule discounting occurs when
+self-pollination reduces the number of ovules that could have been
+cross-fertilized \citep{Barrett02}. This process does not require
+self-fertilization, because late-acting self-incompatibility systems
+can disable ovules that interact with self-pollen tubes, even though
+fertilization does not occur, precluding subsequent
+cross-fertilization \citetext{reviewed by \citealp{Barrett02}}. Seed
+discounting occurs when self-fertilization reduces a plant's seed
+production \citep{Lloyd92a,Herlihy02}. Ovule discounting leads to seed
+discounting only when seed production is pollen limited; otherwise,
+self-fertilization does not reduce the production of cross-fertilized
+seeds. Therefore, seed discounting requires ovule discounting, but
+ovule discounting need not result in seed discounting. Because of this
+asymmetry, it is valuable to distinguish between ovule and seed
+discounting.
+
+Our ovule fates model predicts that mixed mating can be an optimal
+reproductive strategy, rather than an inevitable by-product of poor
+pollinator service (reproductive assurance) or large floral displays
+(geitonogamy). The details of this prediction are described in Harder
+et al ({\OFMixedMating}). In the context of this paper, we explored
+the influence of the type of pollen deposition on the optimal mixed
+mating strategy ({\fref}~\ref{fig:mixedMating}). In this context, the
+optimal mixed mating-system is realized by a proportion ($m-g_{s})/(
+g_{x}-g_{s}$) cross-fertilized ovules and the remainder
+self-fertilized leaving no unfertilized ovules. As illustrated in
+{\fref}~\ref{fig:mixedMating} and {\fref}~\ref{fig:ternary}A this can
+be attained by any mode of self-pollen if pollen deposition sums
+precisely to a pollen-ovule ratio of one. Given the vagaries of pollen
+deposition, this precision seems unlikely. Pollen deposition less than
+a pollen-ovule ratio of 1 results in a sharp decline in fitness. With
+the exception of simultaneous self-pollen, pollen deposition in excess
+of a pollen-ovule ratio of one also causes a decline in fitness. This
+decline is especially rapid for a mixture of pollen sources or delayed
+self-pollen because an increase in cross-fertilized ovules invokes
+resource competition. The prediction that simultaneous
+self-fertilization is favored by natural selection for maintaining
+mixed mating is surprising. This mode of self-fertilization is
+comprised of autonomous simultaneous, facilitated intrafloral, and
+geitonogamous sources of self-pollen. The latter two in particular are
+usually considered to be inevitable by-products of adaptations for
+pollinator attraction and the import and export of cross-pollen
+\citep{Lloyd92}. Despite considerable attention received by
+geitonogamy, few studies have measured the magnitude of simultaneous
+intrafloral self-pollen. However, this mode of selfing links cross-
+and self-pollen deposition which can be quite beneficial if mixed
+mating is favoured. Floral traits, such as herkogamy and dichogamy,
+that modify the availability of self-pollen may evolve to realize the
+optimal ratio of cross- and self-pollen, rather than reduce the
+frequency of inbreeding. This argument is supported by the observation
+that these traits often do not eliminate self-fertilization
+\citetext{e.g., \citealp{Griffin00}}.
+
+Reproductive assurance is the dominant explanation for the maintenance
+of self-fertilization when $g_{x}<2g_{s}$
+\citep{Darwin76,Lloyd92a,Herlihy02,Kalisz04}. When pollinators are rare,
+self-fertilization allows for the fertilization of ovules that would
+remain unfertilized otherwise. In particular, delayed
+self-fertilization is thought to be effective at providing
+reproductive assurance \citep{Lloyd92a,Kalisz99}. However, as is
+illustrated in {\fref}~\ref{fig:limits}C and F, under pollen
+limitation all modes of self-fertilization are equally effective at
+providing reproductive assurance. The benefit of delayed selfing is
+that it cannot preempt cross-fertilization and cause ovule
+discounting. However, we have identified two fallacies with the
+invocation of delayed selfing as a mechanism for reproductive
+assurance. The first is that delayed selfing is not universally
+favoured. If the addition of more fertilized embryos invokes resource
+competition, delayed selfing can be disadvantageous. Once resource
+limitation is invoked, increased selfing is only favoured if
+$2d_{s}>d_{x}$. The second fallacy is that the occurence of delayed
+selfing is evidence for reproductive assurance. As demonstrated in
+{\fref}~\ref{fig:trajectory}, delayed selfing can also be favoured for
+realizing the optimal mixed-mating system. In this case, the plant is
+manipulating the ratio of cross- to self-fertilizations, rather than
+simply maximizing the number of fertilized ovules. These fallacies
+highlight the care that must be taken when evaluating reproductive
+assurance hypotheses for the evolution of self-fertilization.
+
+\subsection{Empirical considerations}
+Our model reinforces the fact that seed production does not always
+equal fitness (compare {\fref}~\ref{fig:limits}B and D, E and F). In
+general, seed production is maximized by cross-fertilization and
+fitness (when $g_{x}<2g_{s}$) by self-fertilization. The two-fold
+advantage of self-fertilization has been appreciated since
+\citet{Fisher30}. Nonetheless, seed production is the predominant
+measure used to quantify maternal fitness. Since many plant species
+exhibit mixed mating \citep{Barrett90a} the realized fitness of
+phenotypes could be underestimated. Ideally, measures of seed
+production should be associated with estimates of the mating system so
+that fitness can be accurately estimated.
+
+The influence of pollen quality on a plant's seed production bears
+important practical implications for the detection of pollen
+limitation. The typical approach to assessing pollen limitation
+usually involves supplementation of a flower's natural pollen receipt
+with cross-pollen \citetext{reviewed by \citealp{Burd94}}. However, if
+simultaneous or delayed self-fertilization occur commonly, then
+pollen-supplemented flowers will receive a different mixture of pollen
+than naturally pollinated flowers. This difference could result in
+higher seed production by supplemented flowers, even though all ovules
+in naturally pollinated flowers are fertilized, if self-fertilized
+embryos have a lower chance of developing into seeds than
+cross-fertilized ovules. Consequently, pollen supplementation may
+often lead to a conclusion of limitation, even though none exists
+\citetext{also see \citealp{Ramsey95,Ramsey00}}.
+
+\section{Appendix: Correspondence between numerical and proportional ovule fates}
+Ovules are discrete entities, which are often produced in relatively
+small number. Therefore we use a numerical approach to calculating the
+integer number of self- and cross-fertilized embryos, $F_{s}$ and
+$F_{x}$, respectively, given that a plant produces a total of $O_{T}$
+ovules. These ovules are fertilized by pollen tubes that arrive at
+different times and represent different paternal plants, including
+cross-pollen $P_{x}$, prior self-pollen $P_{p}$, autonomous
+simultaneous self-pollen $P_{a}$, facilitated intrafloral self-pollen
+$P_{f}$ (treated as a proportion of $P_{x}$; $0\leqslant
+P_{f}\leqslant 1$), and delayed self-pollen $P_{d}$. These five
+classes of pollen fertilize available ovules to produce prior ovules
+$O_{p}$, autonomous simultaneous ovules $O_{a}$, facilitated
+intrafloral ovules $O_{f}$, outcrossed ovules $O_{x}$, and delayed
+ovules $O_{d}$ as follows:
+
+\begin{equation}
+  O_{p}=
+  \begin{cases}
+    P_{p},      &\text{if }P_{p} < O_{T};\\
+    O_{T},      &\text{if }P_{p} \geqslant O_{T};\\
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+  O_{a}=
+  \begin{cases}
+    P_{a}, & \text{if }P_{a} + P_{x} < O_{T} - O_{p};\\
+    \frac{P_{a}}{P_{a} + P_{x}} \left( O_{T} - O_{p}\right), &\text{if }P_{a} + P_{x} \geqslant O_{T} - O_{p};\\
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+        O_{f}=
+        \begin{cases}
+  P_{f}P_{x}, &\text{if }P_{a} + P_{x} < O_{T} - O_{p};\\
+  \frac{P_{f}P_{x}}{P_{a} + P_{x}} \left( O_{T} - O_{p}\right), &\text{if }P_{a} + P_{x} \geqslant O_{T} - O_{p};\\
+        \end{cases}
+\end{equation}
+
+\begin{equation}
+  O_{x}=
+  \begin{cases}
+    P_{x}, &\text{if }P_{a} + P_{x} < O_{T} - O_{p};\\
+    \frac{P_{x}}{P_{a} + P_{x}} \left( O_{T} - O_{p}\right), &\text{if }P_{a} + P_{x} \geqslant O_{T} - O_{p};\\
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+  O_{d}=
+  \begin{cases}
+    P_{d}, &\text{if }O_{T} > O_{p} + O_{a} + O_{x}\\
+    &\text{and}\\
+    &\text{if }P_{d} < O_{T}-O_{p}-O_{x}-O_{a};\\
+    O_{T}-O_{p}-O_{x}-O_{a}, &\text{if }O_{T} > O_{p} + O_{a} + O_{x}\\
+    &\text{and}\\
+    &\text{if }P_{d} \geqslant O_{T}-O_{p}-O_{x}-O_{a};\\
+    0, &\text{if }O_{T}=O_{p}-O_{x}-O_{a};\\
+  \end{cases}
+\end{equation}
+
+Note that autonomous simultaneous self-pollen and cross-pollen
+fertilize ovules in proportion to their relative abundance. Given this
+numerical assignment of ovules, the numbers of self-fertilized embryos
+are:
+
+\begin{equation}
+  O_{s}=O_{p}+O_{a}+O_{d}
+\end{equation}
+
+The preceding results also allow us to calculate the conditional
+probabilities of ovules being fertilized by prior selfing ($p$),
+simultaneous autonomous selfing ($a$), delayed selfing ($d$) and
+outcrossing ($x$):
+
+\begin{equation}
+  p=O_{p}/O_{T}
+\end{equation}
+
+\begin{equation}
+  a=\frac{O_{a}}{O_{T}-O_{p}}
+\end{equation}
+
+\begin{equation}
+  d =\frac{O_{d}}{O_{T}-O_{p}-O_{x}-O_{a}}
+\end{equation}
+
+\begin{equation}
+  f =\frac{O_{f}}{O_{T}-O_{p}}
+\end{equation}
+
+\begin{equation}
+  x =\frac{O_{x}}{O_{T}-O_{p}}
+\end{equation}
+
+\bibliography{/Users/mroutley/Documents/References}
+
+\newpage
+\section{Figure captions} {\fref}~\ref{fig:empirical}: Ovule and seed
+production data are presented for 332 species. The figure plots ovules
+per flower and seeds per flower on log scales. Results from open
+pollination are plotted as solid circles, hand-cross pollination as
+open squares, and hand-self pollination as open diamonds. The solid
+line indicates a seed-ovule ratio of 1 and the dashed line a
+seed-ovule ratio of 0.5. The solid grey line is the line of best fit
+through the open-pollinated data (log(Seeds/flower) =
+log(Ovules/flower)-0.27) and yields an average seed-ovule ratio of
+0.534. The dashed grey line is the line of best fit through the
+cross-pollinated data and the dot-dash grey line is for the
+self-pollinated data.
+
+{\fref}~\ref{fig:fates}: Decomposition of ovule fates. See
+{\tref}~\ref{table:symbols} for definitions of symbols.
+
+{\fref}~\ref{fig:limits}: General relations of pollen, ovule and
+resource limitation of seed production to the proportions of self-
+($O_{s}/O_{T}$) and cross-fertilized ovules ($O_{x}/O_{T}$: A and D)
+and the relations of seed production (B and E) and maternal fitness (C
+and F) to the relative abundance of pollen tubes in the ovary. In all
+panels, 90\% of cross-fertilized embryos survive genetic death
+($g_{x}=0.9$), a plant with $O_{T}=100$ ovules has sufficient
+resources to mature 80\% of its ovules into seeds (m = 0.8), selfed
+embryos are less competitive than outcrossed embryos ($\kappa =0.7$),
+and 70\% of selfed and 90\% of outcrossed seeds become reproductive
+adults ($d_{s}=0.7$, $d_{s}=0.9$). For A-C, 30\% of self-fertilized
+embryos survive genetic death ($g_{s}=0.3$) and mixed-mating is
+favored, whereas for D-F, 70\% survive and exclusively selfing is
+favored. In A and D the solid diagonal line represents the
+ovule-production constraint ($O_{s}+O_{x}=O_{T}$) and the dashed line
+indicated the transition from pollen to resource
+limitation($O_{s}g_{s}+O_{x}g_{x}=m$). The lightly shaded area
+illustrates combinations of self- and cross-fertilization that result
+in pollen limitation, whereas ovule limitation occurs on the solid
+dark line along the ovule-constraint line. The darkly shaded area
+illustrates combinations of self- and cross-fertilization that result
+in resource limitation. In B, C, E and F, solid lines illustrate the
+effects of changes in the number of cross-pollen tubes when there are
+also 10 pollen tubes each produced by prior, simultaneous, and delayed
+self-pollen. The dashed lines depict corresponding responses to
+changes in the number of prior self-pollen tubes, when there are 10
+pollen tubes of each of the other classes. Maternal fitness (C and F)
+is measured as the number of genomes per ovule contributed to the next
+generation. Numbers in all panels indicate transitions in either the
+interactions of ovule fates or resource competition.
+
+{\fref}~\ref{fig:mixedMating}: The relationships between seed
+production and fitness for pollen deposition when pollen arrives in
+the optimal ratio of cross and self-pollen. Each line differs in the
+source of self-pollen, as indicated in the legend. In all cases
+$g_{x}=0.9$, $g_{s}=0.3$, $m=0.6$, and $\kappa =0.7$.
+
+{\fref}~\ref{fig:ternary}: Ternary plots indicating the combinations
+of pollen that produce the maximum maternal fitness. The axes
+represent the proportion of ovules fertilized by prior (P) and
+autonomous (A) self pollen and cross-pollen (X). To simplify the
+presentation, we only plot combinations of fertilizations that do not
+include delayed self-fertilization. For example, at the lower right
+vertex prior self- and cross-fertilized ovules are equally abundant
+with no autonomously fertilized ovules. Panel A shows optimal
+combinations for $g_{x}=0.9$, $g_{s}=0.3$, $m=0.6$, and $\kappa
+=0.7$. Under these conditions, mixed mating is the optimal strategy
+({\eref}~\eqref{eq:mixedMating}). Panel B shows optimal combinations for
+$g_{x}=0.9$, $g_{s}=0.7$, $m=0.6$, and $\kappa =0.7$. Under these
+conditions, pure self-fertilization is the optimal strategy.
+
+{\fref}~\ref{fig:trajectory}: Trajectory plots of mating outcomes from
+the dynamic model. Four representative trajectories are shown in each
+panel. Each point of a trajectory represents a time interval and
+plants make optimal decisions at each of ten time intervals given the
+number of cross- and self-fertilized ovules. In all panels,
+$g_{x}=0.9$, $g_{s}=0.3$, $d_{x}=0.9$, $d_{s}=0.7$, $m=0.8$, and
+$\kappa =0.7$. The open square in each panel indicates the optimal
+mating system given these parameters ($t=0.83$) and the dashed
+diagonal line is the ovule production constraint. The proportion of
+facilitated self-pollen is 0.17 in panel A and 0 in all others. In A
+mean cross-pollen deposition is 5 grains, self-pollen deposition is 20
+grains, and the probability of a pollinator visit in each visit is
+0.5. These parameters for the other panels are as follows: B 20
+cross-pollen grains, 5 self-pollen grains, and the probability of a
+visit is 0.5; C 5 cross-pollen grains, 20 self-pollen grains, and the
+probability of a visit is 0.5; D 20 cross-pollen grains, 5 self-pollen
+grains, and the probability of a visit is 0.1; E 5 cross-pollen
+grains, 5 self-pollen grains, and the probability of a visit is 0.9;
+and F 1 cross-pollen grains, 20 self-pollen grains, and the
+probability of a visit is 0.1. In panel F, the majority of
+trajectories involve pure selfing. A small fraction ($\sim$ 10\%)
+include cross-fertilization in the final time step.
+
+\newpage
+
+
+\begin{table}[p]
+\begin{minipage}{\textwidth}
+  \begin{tabular}{lcc}
+    \hline
+    Definition & Proportion & Number\\
+    \hline
+    Prior self-pollen &  & $P_{P}$\\
+    Autonomous self-pollen &  & $P_{A}$\\
+    Facilitated self-pollen &  & $P_{F}$\\
+    Cross-pollen &  & $P_{X}$\\
+    Delayed self-pollen &  & $P_{D}$\\
+    Increment in cross-fertilization from an additional pollen tube & $c$ & \\
+    Total ovules &  & $O_{T}=100$\\
+    Cross-fertilized ovules & $x$\footnote{This parameter represents the proportion of ovules that remain unfertilized after prior self-fertilization, rather than the proportion of all ovules.} & $O_{X}$\\
+    Prior self-fertilized ovules & $p$ & $O_{P}$\\
+    Autonomous self-fertilized ovules & $a^{a}$ & $O_{A}$\\
+    Facilitated self-fertilized ovules & $f^{a}$ & $O_{F}$\\
+    Delayed self-fertilized ovules & $d$\footnote{This parameter represents the proportion of ovules that remain unfertilized after prior and simultaneous self-fertilization plus cross-fertilization, rather than the proportion of all ovules.} & $O_{D}$\\
+    All self-fertilized ovules & & $O_{S}$\\
+    Self-fertilized embryos surviving genetic deaths & $g_{s}=0.3$ or $0.7$ & \\
+    Cross-fertilized embryos surviving genetic deaths & $g_{x}=0.9$ & \\
+    Ovules that can mature into seeds & $m=0.8$ & \\
+    Cross-fertilized embryos surviving competitive deaths & $k_{s}$ & \\
+    Cross-fertilized embryos surviving competitive deaths & $k_{x}$ & \\
+    Competitive ability of self-vs.~cross-fertilized embryos & $\kappa =0.7$ & \\
+    Self-fertilized seeds &  & $S_{s}$\\
+    Cross-fertilized seeds &  & $S_{x}$\\
+    Self-fertilized seeds that become adults & $d_{s}=0.7$ & \\
+    Cross-fertilized seeds that become adults & $d_{x}=0.9$ & \\
+    Maternal fitness &  & $W$\\
+    \hline
+  \end{tabular}
+  \caption{Summary of parameters and variables considered by the ovule fates models (see text and Appendix).  Numbers associated with parameters indicate default values considered in the numerical analysis.}
+  \label{table:symbols}
+\end{minipage}
+\end{table}
+
+\begin{table}[p]
+\begin{minipage}{\textwidth}
+  \begin{tabular}{p{2.3cm}p{3cm}ccp{3cm}}
+    \hline
+    Mode\footnote{We refer to ``autonomous, simultaneous
+      self-fertilization'' and ``facilitated, intrafloral
+      self-fertilization'' rather than Lloyd's (1992) terms, competing and
+      facilitated self-fertilization, respectively, because they describe
+      the relevant processes more accurately. Lloyd's reference to
+      competing self-fertilization is misleading for two reasons. First,
+      self- and cross-pollination and the resulting fertilizations are
+      competitive only if more pollen tubes enter the ovary than are
+      necessary to fertilize all available ovules and more ovules are
+      fertilized than can be matured into seeds, given the available
+      maternal resources. Second, when maternal resources are limited,
+      ovules fertilized by any class of self-pollen, except perhaps
+      delayed self-pollen, can compete with cross-fertilized embryos for
+      resources during development. Lloyd's use of facilitated
+      self-fertilization in reference only to an intrafloral process also
+      introduces confusion, because geitonogamy also requires the action
+      of a pollen vector. For these reasons, we prefer the more precise,
+      if more cumbersome, terms for autonomous simultaneous and
+      facilitated intrafloral self-fertilization.} & Timing relative to cross-pollen & Scale of pollination & Pollination mode & Lloyd's (1992) terminology\\
+    \hline
+    Prior & Before & Within flower & Autonomous & Prior\\
+    Autonomous simultaneous & Simultaneous & Within flower & Autonomous & Competing\\
+    Facilitated intrafloral & Simultaneous & Within flower & Facilitated & Facilitated\\
+    Geitonogamy  & Simultaneous & Between flowers & Facilitated & Geitonogamy\\
+    Delayed & After & Within flower & Autonomous & Delayed\\
+    \hline
+  \end{tabular}
+  \caption{Functional definitions of the modes of self-fertilization and their correspondence with Lloyd's (1992) terminology.}
+  \label{table:modes}
+\end{minipage}
+\end{table}
+
+% \begin{table}[p]
+%\begin{tabular}{r|ll}
+%\hline
+% & no discounting & discounting\\
+%\hline
+%no resource competition & $\frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{O_{x1}-O_{x2}}{O_{s2}-O_{s1}}$ & $\frac{2g_{s}d_{s}}{g_{x}d_{x}}>\frac{O_{x1}-\pi_{1}-(O_{x2}-\pi_{2})}{O_{s2}-O_{s1}}$\\
+%resource competition & $\frac{d_{s}}{d_{x}}>\frac{1}{2}$ & $\frac{d_{s}}{d_{x}}>\frac{1}{2}+\frac{(\pi_{2}-\pi_{1})(g_{s}O_{s2}+g_{x}O_{x2})}{2g_{s}(O_{s2}O_{x1}-O_{s1}O_{x2})}$\\
+%\hline
+%\end{tabular} 
+%\caption{The invasion conditions for discounting and non-discounting selfing with and without resource competition.}
+%\label{table:invasionConditions}
+%\end{table}
+
+\newpage
+
+\begin{figure}[p]
+  \includegraphics[scale=1]{OFEmpirical}
+  \caption{}
+  \label{fig:empirical}
+\end{figure}
+
+\begin{figure}[p]
+  \includegraphics[scale=1]{OFFlow}
+  \caption{}
+  \label{fig:fates}
+\end{figure}
+
+\begin{figure}[p]
+  \includegraphics[scale=1]{OFLimits}
+  \caption{}
+  \label{fig:limits}
+\end{figure}
+
+\begin{figure}[p]
+  \includegraphics[scale=1]{OFMixedMating}
+  \caption{}
+  \label{fig:mixedMating}
+\end{figure}
+
+\begin{figure}[p]
+  \includegraphics[scale=1]{OFTernary}
+  \caption{}
+  \label{fig:ternary}
+\end{figure}
+
+\begin{figure}[p]
+  \includegraphics[scale=1]{OFTrajectory}
+  \caption{}
+  \label{fig:trajectory}
+\end{figure}
+
+\end{document}

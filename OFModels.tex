@@ -1,0 +1,299 @@
+\documentclass[12pt]{amsart}
+\usepackage{graphicx,amssymb,amsfonts}
+\usepackage[sort]{natbib}
+\pagestyle{plain}
+\setcounter{secnumdepth}{0}
+
+\title{The Ovule Fates Models}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+Here are the three models we have explored so far. I have tried to capture the current state of each model and the conclusions drawn from each. At the end, I summarise the insights gained and the pros and cons of each (you may want to skip right to that). I have also included the general ovule fates schematic and some figures from the original model (as a reminder).
+
+\section{Model 1 -- The Original}
+This model considers the fates of ovules once they have been produced. Figure \ref{fig:modelOverview} presents a conceptual overview of the potential ovule fates. Most generally, ovules can be partitioned into those that are fertilised and those that are not. Ovules can be fertilised by either self or outcross pollen. Moreover, self pollen can be divided into distinct types in reference to its arrival relative to outcross pollen. Self pollen that arrives before outcross pollen (prior self pollination). Self pollen can also arrive coincident with outcross pollen (interactive self pollination). Interactive self pollen has also been described as competing self pollen. However this name is inaccurate in the sense that this source of pollen does not necessarily compete with outcross pollen (as described below). Finally, self pollen may arrive after the deposition of outcross pollen (delayed self pollination). It is important to recognize that these categories of self pollen are not mutually exclusive. Pollen can arrive in any quantity of each type. Each of these four types of pollen may have different consequences for the fates of ovules.
+
+
+
+\subsection{Ovule counts}
+We begin with a fixed number of available ovules $O_{T}$. Currently, this ovule production is not a function of resource availability and is arbitrarily fixed at 100. Self pollen then germinates through the style to these ovules in three distinct time periods demarcated by the arrival of outcross pollen $P_{x}$: prior self-pollen $P_{p}$, interactive self-pollen $P_{I}$, and delayed self-pollen $P_{d}$. These four classes of pollen fertilize any remaining ovules to produce prior ovules $O_{p}$, interactive ovules $O_{I}$, outcrossed ovules $O_{x}$, and delayed ovules $O_{d}$ as follows:
+\begin{equation} \label{eq:priorOvules}
+	O_{p}=
+	\begin{cases}
+		P_{p}, 	&\text{if $P_{p} < O_{T}$;}\\
+		O_{T},	&\text{if $P_{p} \geqslant O_{T}$;}\\
+	\end{cases}
+\end{equation}
+
+\begin{equation} \label{eq:interactiveOvules}
+	O_{I}=
+	\begin{cases}
+		P_{I}, 									&\text{if $P_{I} + P_{x} < O_{T} - O_{p}$;}\\
+		\frac{P_{I}}{P_{I} + P_{x}} \left( O_{T} - O_{p}\right),	&\text{if $P_{I} + P_{x} \geqslant O_{T} - O_{p}$;}\\
+	\end{cases}
+\end{equation}
+
+\begin{equation} \label{eq:outcrossOvules}
+	O_{x}=
+	\begin{cases}
+		P_{x}, 									&\text{if $P_{I} + P_{x} < O_{T} - O_{p}$;}\\
+		\frac{P_{x}}{P_{I} + P_{x}} \left( O_{T} - O_{p}\right),	&\text{if $P_{I} + P_{x} \geqslant O_{T} - O_{p}$;}\\
+	\end{cases}
+\end{equation}
+
+\begin{equation} \label{eq:delayedOvules}
+	O_{d}=
+	\begin{cases}
+		P_{d}, 					&\text{if $O_{T} > O_{p} + O_{I} + O_{x}$}\\
+								&\text{and}\\
+								&\text{if $P_{d} < O_{T}-O_{p}-O_{x}-O_{I}$;}\\
+		O_{T}-O_{p}-O_{x}-O_{I},	&\text{if $O_{T} > O_{p} + O_{I} + O_{x}$}\\
+								&\text{and}\\
+								&\text{if $P_{d} \geqslant O_{T}-O_{p}-O_{x}-O_{I}$;}\\
+		0,						&\text{if $O_{T}=O_{p}-O_{x}-O_{I}$;}\\
+	\end{cases}
+\end{equation}
+
+Note that interactive self-pollen and outcross pollen have equivalent siring ability (i.e., there are no post-pollination, pre-fertilization effects). Consequently, they fertilize ovules in proportion to their relative abundance.
+
+\subsection{Proportions}
+\label{section:proportions}
+We can also calculate the proportion of the total number of ovules fertilized in the prior ($p$), interactive ($I$), or delayed ($d$) phase, as well as the fertilization success of outcross pollen during the interactive phase ($x$) as (Figure \ref{fig:modelOverview}):
+\begin{equation} \label{eq:prior}
+	p =
+	\begin{cases}
+		P_{p}/O_{T},	&\text{if $O_{T} > P_{p}$;}\\
+		1,			&\text{if $O_{T} \leqslant P_{p}$;}\\
+	\end{cases}
+\end{equation}
+
+\begin{equation} \label{eq:interactive}
+	I =
+	\begin{cases}
+		\frac{P_{x}+P_{I}}{O_{T}-P_{p}},	&\text{if $P_{I} + P_{x} < O_{T} - O_{p}$;}\\
+		1,						&\text{if $P_{I} + P_{x} \geqslant O_{T} - O_{p}$;}\\
+	\end{cases}
+\end{equation}
+
+\begin{equation} \label{eq:delayed}
+	d =
+	\begin{cases}
+		\frac{P_{d}}{O_{T}-O_{p}-O_{x}-O_{I}},	&\text{if $O_{T} > O_{p} + O_{I} + O_{x}$}\\
+										&\text{and}\\
+										&\text{if $P_{d} < O_{T}-O_{p}-O_{x}-O_{I}$;}\\
+		1,								&\text{if $O_{T} > O_{p} + O_{I} + O_{x}$}\\
+										&\text{and}\\
+										&\text{if $P_{d} \geqslant O_{T}-O_{p}-O_{x}-O_{I}$;}\\
+		0,							 	&\text{if $O_{T}=O_{p}-O_{x}-O_{I}$;}\\
+	\end{cases}
+\end{equation}
+
+\begin{equation} \label{eq:outcross}
+x =\frac{P_{x}}{P_{x}+P_{I}}
+\end{equation}
+
+\subsection{Seed counts}
+Developing ovules then pass through two sieves before becoming seeds. The first sieve is genetic, in which $G_{i}$ ovules are lost due to genetic causes (e.g., inbreeding depression or genetic load). The subscript $i$ denotes different magnitudes of genetic losses for different classes of ovules. Currently there are two types of genetic losses: $G_{s}$ for selfed ovules and $G_{o}$ for outcrossed ovules. $G_{s}$ can range from 0 to 1 while $G_{x}$ is fixed at 0 (i.e., no outcrossed ovules are lost to genetic causes). The second sieve is competitive and is represented by $k_{i}$. Currently all $k_{i}$'s are set to 0.
+
+Combining these sieves with equations \ref{eq:priorOvules}, \ref{eq:interactiveOvules}, and \ref{eq:delayedOvules} calculates the number of seeds produced through selfing as:
+\begin{equation} \label{eq:selfSeed}
+S_{s}=(1-G_{s})[O_{p}(1-k_{p})+O_{I}(1-k_{i})+O_{d}(1-k_{d})]
+\end{equation}
+and the number of seeds produced through outcrossing is:
+\begin{equation} \label{eq:crossedSeed}
+S_{o}=(1-G_{o})[O_{x}(1-k_{o})]
+\end{equation}
+
+\subsection{Fitness}
+
+Combining equations \ref{eq:selfSeed} and \ref{eq:crossedSeed} calculates the fitness of any particular combination of ovule fates ($w$):
+\begin{equation} \label{eq:fitness}
+w=2 S_{s}+ S_{o} ,
+\end{equation}
+which accounts for the two-fold advantage of selfers.
+
+%\begin{figure}[p]
+%\includegraphics[scale=0.6]{DiscreteModelFigures/fitnessForOutcrossPanels}
+%\caption{Fitness of selfers relative to an obligate outcrosser (dashed line) with a fixed level of pollination (indicated by the panel label). Both prior and delayed pollen are set to 10. Each line represents different values of $G_{s}$ with the value decreasing from top to bottom.}
+%\label{fig:fitnessForOutcrossPanels}
+%\end{figure}
+
+%\begin{figure}[p]
+%\includegraphics[scale=0.6]{DiscreteModelFigures/selfingXseed}
+%\caption{The effect of the ovule-level selfing rate on seed set for different amounts of outcross pollen delivery. The selfing rate is manipulated by changes in interactive pollen delivery. Both prior and delayed pollen are set to 10. Each line represents different values of $G_{s}$ with the value decreasing from top to bottom.}
+%\label{fig:selfingXseed}
+%\end{figure}
+
+%\begin{figure}[p]
+%\includegraphics[scale=0.6]{DiscreteModelFigures/pollenLimitation}
+%\caption{The influence of ovule fates on measuring pollen limitation. Seed set below 100 may be considered as pollen limitation. However, this is not necessarily true. Areas to the left of the dashed vertical line are pollen limited. Each line represents different values of $G_{s}$ with the value decreasing from top to bottom.}
+%\label{fig:pollenLimitation}
+%\end{figure}
+
+%\appendix
+%\section{Analytical model}
+%Without considering the numerical values of ovule production and pollen delivery, the ovule fates model can be described algebraically. The ovule fates are defined in section \ref{section:proportions}. Based on these definitions, the proportions of ovules in each class are:
+%\begin{equation} \label{eq:analyticalProportions}
+%\begin{array}{ll}
+%O_{p}= & p\\
+%O_{I}= & (1 - p) I (1 - x)\\
+%O_{d}= & w (1 - p) (1 - I)\\
+%O_{o}= & (1 - p) I x\\
+%\end{array}
+%\end{equation}
+
+%Furthermore, the proportion of ovules left unfertilised ($O_{u}$) is:
+%\begin{equation} \label{eq:analyticalUnfert}
+%O_{u} = (1 - w)(1 - p) (1 - I)
+%\end{equation}
+
+%The proportion of seeds produced by selfing is:
+%\begin{equation} \label{eq:analyticalSelfSeed}
+%S_{s}=(1-G_{s})[O_{p}(1-k_{p})+O_{I}(1-k_{i})+O_{d}(1-k_{d})]
+%\end{equation}
+%and through outcrossing is:
+%\begin{equation} \label{eq:analyticalOutSeed}
+%S_{o}=(1-G_{o})[O_{x}(1-k_{o})]
+%\end{equation}
+%Finally, the relative fitness of any ovule fates combination is given by:
+%\begin{equation} \label{eq:analyticalFitness}
+%\begin{array}{ll}
+%w= & 2 S_{s}+ S_{o}\\
+%\phantom{w}= & 2 (1-G_{s})[O_{p}(1-k_{p})+O_{I}(1-k_{i})+O_{d}(1-k_{d})] + (1-G_{o})[O_{x}(1-k_{o})]\\
+%\end{array}
+%\end{equation}
+%\section{Model 2 -- Age structure}
+
+%Let $U(t)$ be the number of unfertilized ovules at time $t$. Suppose there are initially $U_{0}$ unfertilized ovules, and self-pollen and outcrossed-pollen arrive at unfertilized ovules at rates $a_{s}(t)$ and $a_{o}(t)$, respectively. Dynamics for $U$ are governed by,
+%\begin{equation} \label{eq:ageU}
+%\frac{dU}{dt} = -(a_{s}(t) + a_{o}(t)) U
+%\end{equation}
+
+%Ovules hit by self-pollen and outcrossed-pollen die due to genetic effects with probability $p_{s}$ and $p_{o}$, respectively. Let $Y_{s}(t)$ and $Y_{o}(t)$ be the number of self and outcrossed ovules that die due to genetic effects. Let $s(a,t)$ and $o(a,t)$ be the number of self and outcrossed ovules that survive genetic effects at time $t$ that were fertilized $a$ time units ago. The dynamics of these variables are governed by,
+
+%\begin{equation} \label{eq:ageYs}
+%\frac{dY_{s}}{dt} = p_{s}a_{s}U
+%\end{equation}
+%\begin{equation} \label{eq:ageYo}
+%\frac{dY_{o}}{dt} = p_{o}a_{o}U
+%\end{equation}
+%\begin{equation} \label{eq:ageS}
+%\frac{\partial{s}}{\partial{t}} + \frac{\partial{s}}{\partial{a}} = 0
+%\end{equation}
+%\begin{equation} \label{eq:ageO}
+%\frac{\partial{o}}{\partial{t}} + \frac{\partial{o}}{\partial{a}} = 0
+%\end{equation}
+
+%The initial conditions for $Y_{s}$ and $Y_{o}$ are $Y_{s}$(0) = 0 and $Y_{o}$(0) = 0. The initial conditions for $s$ and $o$ are,
+%\begin{equation} \label{eq:ageInitS}
+%s(0,t) = (1-p_{s})a_{s}U
+%\end{equation}
+%\begin{equation} \label{eq:ageInitO}
+%o(0,t) = (1-p_{o})a_{o}U
+%\end{equation}
+
+%The above model keeps track of the fates of all ovules, and so,
+%\begin{equation} \label{eq:ageFates}
+%U(t) + Y_{s}(t) + Y_{o}(t) + \int_{a=0}^{t}s(a,t) + o(a,t)da = U_{0}
+%\end{equation}
+
+%\section{Model 3 -- Dynamic programming}
+
+%This model considers a plant that can choose to self autonomously ($S_{a}$) or not and tracks two states: the number of unfertilized ovules ($u$) and time ($t$) in days. If the plant chooses not to $S_{a}$ it may receive pollen from visiting pollinators and experience both outcrossing ($O$) and facilitated selfing ($S_{f}$). Choosing $S_{a}$ still allows both $O$ and $S_{f}$. 
+
+%In general we calculate $F(u,t)$ which is the maximum expected reproductive success between day t and the end of anthesis given that $U(t) = u$ and assume that the plant can maximize this function by choosing when to $S_{a}$.
+
+%We begin by calculating the fitness value of each strategy. Choosing not to $S_{a}$ gives $\omega_{0}$, which estimates the number of fertilizations ($f_{v}$) produced by $v$ pollinator visits if each visit yields $f$ fertilizations. Each of these variables has a probability density given by Poisson distributions specified by the average number of pollinator visits ($\bar{v}$) and the average number of fertilizations per visit ($\bar{f}$). Therefore $f_{v}$ is, 
+%\begin{equation} \label{eq:dpOF}
+%f_{v} = \sum_{v=0}^{v_{max}}\sum_{f=0}^{f_{max}} v Pr\{v\} f Pr\{f\}
+%\end{equation}
+
+%A proportion of these fertilizations ($f_{f}$) result from $S_{f}$ obtained from a binomial distribution with $\bar{f}_{f}$ as the average proportion of $f_{v}$ that results from facilitated selfing,
+%\begin{equation} \label{eq:dpSf}
+%S_{f} = \sum_{f_{f}=0}^{f_{v}} f_{f} Pr\{f_{f}\}f_{v}
+%\end{equation}
+
+%Consequently, the fitness value provided by choosing not to $S_{a}$ is,
+%\begin{equation} \label{eq:dpV0}
+%\omega_{0} = \sum_{v=0}^{v_{max}}\sum_{f_{v}=0}^{f_{v,max}}\sum_{f_{f}=0}^{f_{v}}Pr\{v,f_{v},f_{f}\} v f_{v}(1-f_{f}) + 2(1-\delta)f_{f}f_{v}+ F(u', t+1)
+%\end{equation}
+%where $\delta$ is inbreeding depression and $F(u', t+1)$ is the expected future reproductive success in the next time period, given that $u'$ is the number of ovules remaining after $f_{v}$ fertilizations.
+
+%Choosing $S_{a}$ allows both $O$ and $S_{f}$ to occur. The number of fertilizations produced through $S_{a}$ is $f_{a}=\epsilon\bar{f}$ so that $S_{a}$ can be considered more efficient by a factor $\epsilon$ than fertilization through pollinators. The fitness value of choosing $S_{a}$ is $\omega_{1}$ and is given by,
+%\begin{equation} \label{eq:dpV1}
+%\omega_{1} = \sum_{f_{a}=0}^{f_{a,max}} \sum_{v=0}^{v_{max}}\sum_{f_{v}=0}^{f_{v,max}} \sum_{f_{f}=0}^{f_{v}} Pr\{f_{a}, v, f_{v},f_{f}\} (2(1-\delta)f_{a} + v f_{v}[f_{v} (1-f_{f})+ 2(1-\delta) f_{f}] + F(u', t+1))
+%\end{equation}
+
+%For each $t$ and $u$, $F(u,t)$ is calculated as,
+
+%\begin{equation} \label{eq:dpF}
+%F(u,t) = max\{\omega_{0}(u,t),\omega_{1}(u,t)\}
+%\end{equation}
+
+%Finally, the terminal fitness, when $t=t_{max}$, is assumed to be zero since no future reproduction is expected once a flower senesces.
+
+%\section{Results}
+
+%\subsection{Model 1}
+%\subsubsection{Insights}
+%\begin{itemize}
+%\item{Lloyd's competing selfing is not a general term. Interactive or simultaneous is more appropriate.}
+%\item{Trade-offs between modes of selfing and outcrossing rely on ovule limitation.}
+%\item{All modes of selfing can provided reproductive assurance, only delayed always provides it; Figures \ref{fig:fitnessForOutcrossPanels} and \ref{fig:selfingXseed}.}
+%\item{Less-than full seed set is not indicative of pollen limitation; Figure \ref{fig:pollenLimitation}. This makes a distinction between pollen quantity and quality.}
+%\end{itemize}
+
+%\subsubsection{Pros}
+%\begin{itemize}
+%\item{Relatively simple math.}
+%\item{Reveals many (all?) of the insights provided by ovule fates}
+%\end{itemize}
+
+%\subsubsection{Cons}
+%\begin{itemize}
+%\item{Discrete pollen delivery creates discrete changes in the figures.}
+%\item{We must specify many pollen parameters.}
+%\item{No analytical solutions, but this may be alleviated by removing resource sieves.}
+%\item{Does not currently include facilitated selfing, but that can be changed.}
+%\end{itemize}
+
+%\subsection{Model 2}
+%\subsubsection{Insights}
+%\begin{itemize}
+%\item{I am not aware of any novel insights, but we haven't explored this model much.}
+%\end{itemize}
+
+%\subsubsection{Pros}
+%\begin{itemize}
+%\item{Much more elegant than Model 1.}
+%\item{Pollen delivery represented by smooth functions. Consequently, the results have no discrete changes.}
+%\item{More useful for resource considerations which harmonizes the two papers.}
+%\end{itemize}
+
+%\subsubsection{Cons}
+%\begin{itemize}
+%\item{Less transparent to the target audience?}
+%\item{The rate at which ovules are fertilized is proportional to the number of ovules available.}
+%\end{itemize}
+
+%\subsection{Model 3}
+%\subsubsection{Insights}
+%\begin{itemize}
+%\item{Plants should consider how many unfertilized ovules remain and the time left until the end of anthesis when making decisions. However, we can incorporate this into Model 1 at least verbally.}
+%\end{itemize}
+
+%\subsubsection{Pros}
+%\begin{itemize}
+%\item{Optimal strategies are available for any combination of ovule number and anthesis duration.}
+%\item{The plant decides when to self based on the fitness consequences. The other models are more rigid in that we specify when self and outcross pollen arrive.}
+%\item{Forward simulations allow for competition between different evolved strategies and between optimal and stupid strategies.}
+%\end{itemize}
+
+%\subsubsection{Cons}
+%\begin{itemize}
+%\item{Difficult to describe and summarize.}
+%\item{Computationally expensive.}
+%\end{itemize}
+\end{document}

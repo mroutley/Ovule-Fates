@@ -1,0 +1,191 @@
+\documentclass[letterpaper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{natbib,graphicx,amssymb,amsmath}
+\usepackage{Sweave}
+
+\raggedright
+\pagestyle{plain}
+\setcounter{secnumdepth}{0}
+\bibliographystyle{jeb}
+
+\newcommand{\species}[1]{\textit{#1}}
+\newcommand{\abbrv}[1]{\textsc{#1}}
+\newcommand{\func}[1]{\texttt{#1}}
+
+\title{Statistical estimation of ovule fates parameters}
+%\author{Matthew B. Routley}
+%\date{}
+
+\begin{document}
+\maketitle
+
+\section{Model 1}
+Model 1 is a general linear model with an identity link function with binomial variance. The seed-ovule ratio is the response variable (\(\mu\)) and the proportion of cross-fertilized ovules is the predictor variable (\(x\)).
+\[
+	g(\mu)=\beta_{1,0}+\beta_{1,1}x_{i}
+\]
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=Model1}
+response <- cbind(seeds, ovules)
+model.1 <- glm(response ~ proportionCrossPollen, family=quasi(var="mu(1-mu)", link="identity"))
+\end{Scode}
+
+\section{Model 2}
+Model 2 is also a \abbrv{glm} with an identity link function with binomial variance. In addition to the same response and predictor variables as Model 1, Model 2 includes the parameter \(\alpha{}\) which indicates the breakpoint in the response of the seed-ovule ratio to changes in the proportion of cross-pollen \citep{Toms03}.
+
+\[
+	g(\mu)=
+		\begin{cases}
+			\beta_{2,0}+\beta_{2,1}x_{i}, &\text{if \(x_{i} \leq \alpha \)}\\
+			\beta_{2,0}+\beta_{2,1}x_{i}+\beta_{2,2}( x_{i}-\alpha ), &\text{if \(x_{i} > \alpha\)}
+		\end{cases}
+\]
+
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=Model2}
+model.2 <- glm(response ~ bs(proportionCrossPollen, knots=alpha, degree=1), family=quasi(var="mu(1-mu)", link="identity"))
+\end{Scode}
+
+To choose the \(\alpha{}\) value to substitute into Model 2, we evaluate the expression above across a range of \(\alpha{}\) values and choose the value that provides the lowest model deviance.
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=bestAlpha}
+alpha.scale <- 0.1
+deviances <- unlist(lapply(seq(0 + alpha.scale, 1 - alpha.scale, alpha.scale), function(alpha) glm(response ~ bs(proportionCrossPollen, knots=alpha, degree=1), family=quasi(var="mu(1-mu)", link="identity"))$deviance))
+best.alpha <- which.min(deviances)*alpha.scale + alpha.scale
+\end{Scode}
+
+\section{Parameter estimates}
+Before estimating the ovule fates parameters, the appropriate model must be chosen (Figure \ref{fig:estimatesDecisions}). If \(\beta_{1,1}\) is not significantly different from 0, then \(m < g_{s} < g_{x}\) (Figure \ref{fig:simulatedData}a) and only \(m\) can be estimated. The estimate of \(m\) is the intercept of Model 1.
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=mFromInt}
+if (summary(model.1)$coefficients[2,4] > 0.05) {
+		m <- summary(model.1)$coefficients[1,1]
+}
+\end{Scode}
+
+If \(\beta_{1,1}\) is significantly different from 0, we compare the \abbrv{aic}s of Model 1 and Model 2 to determine which model is the better fit to the data. In either case, \(g_{s}\) is estimated as \(\beta_{i,0}\) and \(g_{x}\) as \(\beta_{i,1}+\beta_{i,0}\).
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=gs-gx}
+gs <- the.model$coefficients[1]
+gx <- the.model$coefficients[2] + the.model$coefficients[1]
+\end{Scode}
+
+If Model 2 has the lowest \abbrv{aic}, then \(m\) is estimated as the mean seed-ovule ratio complete cross-pollination. Alternatively, if Model 1 has the lowest \abbrv{aic}, then \(m\) is 1.
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=m}
+if (model.2$aic < model.1$aic) {
+	m <- mean(seeds[proportionCrossPollen==1])/ovules
+} else {
+	m <- 1
+}
+\end{Scode}
+
+\section{Complete R functions}
+The \abbrv{r} code described above is consolidated into the function \func{OFModels}. \func{OFModels} takes the proportion of cross-pollen, seed set, and ovule production as arguments and returns a named list of estimates for \(g_{s}\), \(g_{x}\), \(m\), and \(\alpha{}\).
+
+\begin{Scode}{echo=TRUE, results=hide, eval=FALSE, label=OFFunctions}
+OFModels <- function(x, y, ovules) { #Provide the proportion of cross-pollen, seed set, and average ovule production
+	library(splines) #Required for bs()
+	estimates <- c(NA, NA, NA, NA) #Vector of parameter estimates c(gs, gx, m, alpha)
+	response <- y/ovules #Vector of proportion successes
+	parameterEstimates <- function(the.model) { #Extract the appropriate coefficients for gs & gx
+		as.real(c(the.model$coefficients[1], the.model$coefficients[2] + the.model$coefficients[1]))
+	}
+	family <- quasi(var="mu(1-mu)", link="identity") #Binomial variance and identity link
+	model.1 <- glm(response ~ x, family=family)
+	if (summary(model.1)$coefficients[2,4] > 0.05) { #B1,1 is not significant
+		#Estimate m from the intercept; the other parameters cannot be estimated
+		estimates <- c(NA, NA, summary(model.1)$coefficients[1,1], NA)
+	} else { #Estimate the breakpoint
+		#Cycle across possible breakpoints and record model deviances
+		alpha.scale <- 0.1 #Controls how finely alpha is explored
+		deviances <- unlist(lapply(seq(0 + alpha.scale, 1 - alpha.scale, alpha.scale), function(alpha) glm(response ~ bs(x, knots=alpha, degree=1), family=family)$deviance))
+		#The lowest deviance provides the best estimate of alpha
+		best.alpha <- which.min(deviances)*alpha.scale + alpha.scale
+		model.2 <- glm(response ~ bs(x, knots=best.alpha, degree=1), family=family)
+		if (model.2$deviance < model.1$deviance) { #There is evidence for a breakpoint
+			#Estimate gs and gx from the subset of the data before the breakpoint
+			condition <- x <= best.alpha #Cross-pollen values less than the breakpoint
+			model.2.truncated <- glm(response[condition] ~ x[condition], family=family)
+			#m is the proportion of seed set with complete cross-pollination
+			estimates <- c(parameterEstimates(model.2.truncated), mean(y[x==1])/ovules, best.alpha)
+		} else { #There is no evidence for a breakpoint
+			#m is 1; there is no alpha
+			estimates <- c(parameterEstimates(model.1), 1, NA)
+		}
+	}
+	#Return a named list of estimated parameters; round to 3 decimal places
+	round(c(gs=estimates[1], gx=estimates[2], m=estimates[3], alpha=estimates[4]),3)
+}
+\end{Scode}
+
+\section{Simulated data}
+Two functions are available for simulating data relevant to ovule fates: \func{OFSimulateData} and \func{OFPlot}. \func{OFSimulateData} creates a dataset containing replicate seed set data for given values of \(g_{s}\), \(g_{x}\), and \(m\). Random noise is taken from a normal distribution with a mean of 0 and specified standard deviation and added to the probability of an ovule becoming a seed. \func{OFPlot} takes the data generated from \func{OFSimulateData} and creates a plot of the simulated data. This function could also be used to generate plots of experimentally derived seed-ovule data.
+\begin{Scode}{echo=TRUE, results=hide, label=simulateFunctions}
+OFSimulateData <- function(gs, gx, m, sdev) {
+	ovules <- 100
+	parameters <- list(gs=gs, gx=gx, m=m)
+	replicates <- 3 #The number of fake replicates
+	if(gx > m & gs < m){ #Breakpoints exist only under this condition
+		parameters <- c(parameters,list(alpha = (m-gs)/(gx-gs)))
+	}
+	stepSize <- 0.1
+	crossPollen <- seq(0, 1, stepSize)
+	grp <- factor((1:replicates)[rep(1:replicates, each = length(crossPollen))])
+	crossPollen <- seq(0, 1, stepSize)
+	seeds <- rep((crossPollen * ovules * gx + (1 - crossPollen) * ovules * gs), replicates)
+	conditions <- (seeds > m * ovules)
+	seeds[conditions] <- m * ovules
+	seeds <- seeds + ovules * rnorm(length(crossPollen) * replicates, mean=0, sd=sdev)
+	seeds[seeds > ovules] <- ovules #Correct for more seeds than ovules
+	seeds[seeds < 0] <- 0 #Correct for negative seeds
+	seeds <- round(seeds, 0) #Correct fractional seed production
+	data <- as.data.frame(cbind(grp, rep(crossPollen, replicates), seeds))
+	names(data) <- c("replicates", "crossPollen", "seeds")
+	OFPlot(data$crossPollen, data$seeds, data$replicates, ovules)
+	c(parameters, data)
+}
+OFPlot <- function(x, y, class, ovules) {
+	library(splines) # Required for loess
+	stepSize <- (max(x) - min(x)) / (length(x)/length(levels(as.factor(class)))-1)
+	symbols <-21
+	fill <- c("white")
+	plot(c(0, 1), c(ovules, 0), type="n", xlab="Proportion cross pollen", ylab="Seed production", las=1)
+	points(x, y, pch=symbols[1], bg=fill[class])
+	sequence <- seq(0, 1, stepSize)
+	loe.predict <- predict(loess(y~x), data.frame(x=sequence), se=TRUE) # Add in a smoothed spline
+	lines(sequence, loe.predict$fit)
+	lines(sequence, loe.predict$fit+loe.predict$se, lty="dashed")
+	lines(sequence, loe.predict$fit-loe.predict$se, lty="dashed")
+}
+\end{Scode}
+
+\bibliography{/Users/mroutley/Documents/References}
+
+%theData <- OFSimulateData(0.3, 0.9, 0.7, 0.01)
+%parameters <- theData[1:4]
+%so.data <- theData[5:7]
+%OFModels(so.data$crossPollen, so.data$seeds, 100)
+
+\begin{figure}[]
+\centering
+\includegraphics[scale=1]{OFStatisticalEstimatesDecisions}
+\caption{A schematic of the decisions required to estimate parameters of the ovule fates model from empirical data. Examples of the classes of data are illustrated in Figure \ref{fig:simulatedData}.}
+\label{fig:estimatesDecisions}
+\end{figure}
+
+\begin{figure}[]
+\centering
+\begin{Scode}{fig=TRUE, echo=FALSE, results=hide, label=simulatedData}
+oldPar <- par
+panelLabels <- letters[1:3]
+par(mfrow=c(2,2), mar=c(4,4,1,1)+0.1, oma=c(0,0,0,0))
+gs <- 0.3; gx <- 0.9; sdev <- 0.025
+OFSimulateData(gs, gx, 0.2, sdev)
+text(0, 99, panelLabels[1])
+OFSimulateData(gs, gx, 0.7, sdev)
+text(0, 99, panelLabels[2])
+OFSimulateData(gs, gx, 1, sdev)
+text(0, 99, panelLabels[3])
+par <- oldPar
+\end{Scode}
+\caption{Simulated data created with the \func{OFSimulateData} and \func{OFPlot} functions. In each panel 100 ovules are available, \(g_{s}=\Sexpr{gs}\), \(g_{x}=\Sexpr{gx}\), and \(\sigma =\Sexpr{sdev}\). a) \(m=0.2\), b) \(m=0.7\), and c) \(m=1.0\).}
+\label{fig:simulatedData}
+\end{figure}
+
+\end{document}

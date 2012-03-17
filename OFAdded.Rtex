@@ -1,0 +1,298 @@
+\documentclass[letterpaper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{natbib,graphicx,amssymb}
+\usepackage{Sweave}
+
+\raggedright
+\pagestyle{plain}
+\setcounter{secnumdepth}{0}
+
+\newcommand{\species}[1]{\textit{#1}}
+\newcommand{\abbrv}[1]{\textsc{#1}}
+\newcommand{\Ac}{\species{Aquilegia canadensis}}
+\newcommand{\ac}{\species{A.~canadensis}}
+\newcommand{\Ca}{\species{Chamerion angustifolium}}
+\newcommand{\ca}{\species{C.~angustifolium}}
+
+\title{ }
+%\author{Matthew B. Routley}
+%\date{}
+
+\begin{document}
+\maketitle
+
+\section{Estimating the parameters}
+The utility of the ovule fates model depends on the ease with which the model's parameters can be measured empirically. An efficient and straightforward approach is illustrated in figure \ref{fig:pEst}. The approach consists of applying different ratios of cross- to self-pollen and measuring the resulting seed-ovule ratio. This approach requires that sufficient pollen is applied to fertilize all of the available ovules. In addition, a diversity of ratios provides finer detail of the shape of the curve. When the cross- to self-pollen ratio equals 0, all ovules are fertilized by self-pollen and seed production is \(g_{s}O\). Consequently, the intercept of the line of best fit through such data estimates \(g_{s}\). As the ratio of cross- to self-pollen increases, self-fertilized ovules are replaced with cross-fertilized ovules. Therefore, the slope (\(\beta\)) of the line of best fit through such data measures \(g_{x}-g_{s}\) and \(g_{x}=\beta-g_{s}\). If the seed-ovule ratio plateaus before the proportion of cross pollen reaches 1, the height of the plateau estimates \(m\). Otherwise, \(m\) is the seed-ovule ratio with full cross-fertilization.
+\begin{figure}
+\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=pEstFig}
+m <- 0.7
+gx <- 0.9
+gs <- 0.2
+proportionCrossed <- seq(0, 1, 0.1)
+seedOvuleRatio <- proportionCrossed
+plot(proportionCrossed, seedOvuleRatio, axes=FALSE, xlab="Proportion of ovules cross-fertilized", ylab="Seed-ovule ratio", type="n")
+axis(1, at=c(0,1), labels=c(0,1))
+axis(2, at=c(0, gs,m,1), labels=c(0, expression(paste(g[s])),"m",1), las=1)
+lines(c(0, (m-gs)/(gx-gs)), c(gs, m), lty="solid", lwd=2)
+lines(c((m-gs)/(gx-gs), 1), c(m, m), lty="solid", lwd=2)
+lines(c(0, (m-gs)/(gx-gs)), c(m, m), lty="dashed", lwd=1)
+textSpot <- 0.5
+text(textSpot, (textSpot * gx + (1-textSpot) * gs), pos=4, offset = 2, expression(paste(beta," = ", g[x]-g[s])))
+\end{Scode}
+\caption{A schematic of the experimental approach to estimating parameters of the ovule fates model.}
+\label{fig:pEst}
+\end{figure}
+
+\section{The primary outcrossing rate}
+Genetic load can upwardly bias outcrossing rate estimates. This occurs whenever \(g_{s} > g_{x}\) because some fraction of the inbred offspring are eliminated by genetic load before they can be assayed. Consequently, these `lost' progeny cannot contribute information to the outcrossing rate estimate which becomes based on an increased proportion of cross-fertilized progeny. An unbiased estimate of the outcrossing rate is the proportion of cross-fertilized ovules (the primary outcrossing rate; \(t_{p}\)):
+\begin{equation}\label{eq:tp}
+t_{p}=\frac{F_{x}}{F_{x}+F_{s}}.
+\end{equation}
+which may be substantially different from the estimated outcrossing rate (\(t_{e}\) which measures:
+\begin{equation}\label{eq:te}
+t_{e}=\frac{F_{x}g_{x}k_{x}}{F_{x}g_{x}k_{x}+F_{s}g_{s}k_{s}}.
+\end{equation}
+
+\subsection{\citet{Maki93}}
+A commonly used approach for estimating the primary outcrossing rate is provided by \citet{Maki93}:
+\begin{equation}\label{eq:mak}
+t_{p}^{m}=1-\frac{1-t_{e}}{1-t_{e}\delta}
+\end{equation}
+where \(\delta\) is an estimate of inbreeding depression up to the life stage at which the outcrossing rate is estimated. The logic of this approach is that, given an estimate of \(\delta\) and the proportion of surviving embryos that are self-fertilized, you can back calculate the number of selfed embryos that were lost and reconstruct the initial frequency of selfed ovules. The problem with this approach is that it assumes there are sufficient ovules to absorb these `lost' selfed embryos. As an illustration, if \(t_{e}=0.9\) is based on 0.8\(O\) seeds and \(\delta =0.6\), \(t_{p}^{m}\sim 0.65\). \(t_{e}\) was based on 0.72\(O\) outcrossed seeds and 0.08\(O\) selfed seeds. The \(t_{p}^{m}\) estimate increases the number of selfed seeds to 0.52\(O\). This implies that (0.72+0.52)\(O\) ovules were fertilized, which is greater than one and clearly is not possible.
+
+\subsection{Ovule fates \& the primary outcrossing rate}
+The ovule fates model provides alternatives to \citet{Maki93} for estimating the primary outcrossing rate. Beginning with equations \ref{eq:tp} and \ref{eq:te}, we start with a simplifying assumption, relaxed below, that all of a plants ovules are fertilized. Given this constraint, equation \ref{eq:te} can be expressed as:
+\begin{equation}\label{eq:temO}
+t_{e}=\frac{F_{x}g_{x}}{mO}.
+\end{equation}
+Rearranging equation \ref{eq:temO} gives:
+\begin{equation}\label{eq:fx}
+F_{x}=\frac{mOt_{e}}{g_{x}}
+\end{equation}
+and substituting equation \ref{eq:fx} into \ref{eq:tp} while maintaining the assumption of all ovules being fertilized gives:
+\begin{equation}\label{eq:tpmO}
+t_{p}=\frac{mt_{e}}{g_{x}}.
+\end{equation}
+To summarize, if all ovules are fertilized, the primary outcrossing rate can be calculated from the estimated outcrossing rate only if both \(m\) and \(g_{x}\) are known. If the assumption that all ovules are fertilized is indefensible, the ratio of \(F_{s}\) to \(F_{x}\) can be calculated from equation \ref{eq:te} with estimates of \(t_{e}\), \(g_{x}\), and \(g_{s}\) as:
+\begin{equation}\label{eq:Fs}
+F_{s}=\frac{F_{x}g_{x}-t_{e}F_{x}g_{x}}{t_{e}g_{s}}.
+\end{equation}
+Finally, substituing equation \ref{eq:Fs} into equation \ref{eq:tp} gives:
+\begin{equation}\label{eq:tpFs}
+t_{p}=\frac{t_{e}g_{s}}{g_{x}(1-t_{e})+t_{e}g_{s}},
+\end{equation}
+which converts an estimated to primary outcrossing rate without the assumption that all ovules are fertilized of equation \ref{eq:tpmO}.
+
+\section{Empirical demonstrations}
+\subsection{{\Ca}}
+\label{sec:emp}
+\begin{Scode}{echo=FALSE,results=hide,label=ChamData}
+setwd("/Volumes/iDisk-Local/Documents/OvuleFates/")
+data <- read.table("JeffsData.txt", header=TRUE)
+data$ProportionOutcrossed <- 1 - data$ProportionSelfed/100
+data$SeedOvule <- data$Seed / (data$Seed + data$Aborted)
+attach(data)
+model <- lm(SeedOvule ~ ProportionOutcrossed + Population)
+gs <- model$coefficients[1]
+gx <- model$coefficients[2] + gs
+\end{Scode}
+Research with {\Ca} provides the information required to apply this approach for estimating the primary outcrossing rate. {\ca} produces, on average, 390 ovules/flower \citep{Husband02} and sets 256 seeds after hand cross-pollination \citep{Husband95}. Assuming that \(g_{x}>m\) we can estimate \(m\) as 256/390=\Sexpr{round(256/390,2)}. Unpublished data (Tindall \& Husband) yields figure \ref{fig:emp} which matches the design shown in figure \ref{fig:pEst}. From these data, \(g_{s}\)=\Sexpr{round(gs,2)} and \(g_{x}\)=\Sexpr{round(gx,2)}. Finally, \(t_{e}\)=0.94 \citep{Husband95}. If we assume that all ovules were fertilized, substituting these values into equation \ref{eq:tp} yields \(t_{p}\)=0.925.
+
+\begin{figure}
+\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=ChamPEst}
+mean.so <- aggregate(data[Population=="D2",c(7)], by=list(ProportionOutcrossed=data$ProportionOutcrossed[Population=="D2"]), mean, na.rm=TRUE)
+se.so <- aggregate(data[Population=="D2",c(7)], by=list(ProportionOutcrossed=data$ProportionOutcrossed[Population=="D2"]), function(x) sqrt(var(x, na.rm = TRUE)/length(x)))
+at=c(1:5)
+plot(as.integer(mean.so$ProportionOutcrossed), mean.so[,2], axes=FALSE, xlab="Proportion cross pollen", ylab="Seed-ovule ratio", ylim=range(0,1))
+segments(at, mean.so[,2]+se.so[,2], at, mean.so[,2]-se.so[,2])
+axis(1, labels=seq(0, 1, 0.25))
+axis(2, las=1)
+\end{Scode}
+\caption{Empirical data matching the protocol of figure \ref{fig:pEst} for \species{Chamerion angustifolium}.}
+\label{fig:emp}
+\end{figure}
+
+Because the outcrossing rate was calculated from seedlings, using the safer assumption that not all ovules were fertilized requires information about the loss of inbred offspring during seed germination and seedling development. \citet{Husband95} estimated that, relative to outcrossed progeny, selfed progeny have a 75\% chance of surviving this life stage. Consequently, \(g_{s}\) needs to be modified as \Sexpr{round(gs,2)}*0.75=\Sexpr{round(gs*0.75,2)} to incorporate this source of loss. Solving equation \ref{eq:tpFs} with these values provides an estimate of \(t_{p}=0.71\). This revised estimate is substantially higher than the estimated \(t_{p}=0.45\) based on the \citet{Maki93} approach. This original estimate had been difficult to reconcile with the high inbreeding depression and dramatic protandry of {\ca}. Furthermore, the new estimate of the primary outcrossing rate is much closer to {\ca}'s optimal outcrossing rate, predicted from \ref{eq:tstar}, of 1.0.
+
+\subsection{{\Ac}}
+\begin{Scode}{echo=FALSE,results=hide,label=Routley99}
+# Data from Routley99
+totalOvules <- 119 # Ovules/flower
+crossSeedProduction <- 70 # Seeds/flower after cross-pollination
+carpelOvules <- 24.8 # Ovules/carpel
+carpelSeedsCross <- 15 # Seeds/carpel after cross-pollination
+carpelSeedsSelf <- 12 # Seeds/carpel after self-pollination
+m <- crossSeedProduction / totalOvules
+\end{Scode}
+Now we can look at the data available for {\Ac} to attempt estimates at the parameters of the ovule fates model. {\ac} produces \Sexpr{totalOvules} ovules/flower \citep{Routley99}. If we assume that \(g_{x}\geqslant m\), \(m\) can be estimated from seed production after hand cross-pollination (\Sexpr{crossSeedProduction} seeds) as \(\frac{\Sexpr{crossSeedProduction}}{\Sexpr{totalOvules}}=\Sexpr{round(m, 2)}\).
+\begin{Scode}{echo=FALSE,results=hide,label=Herlihy02}
+# Data from Herlihy02
+tStar <- function(m, gs, gx) {
+	((m - gs)/(gx - gs)) * (gx / m)
+}
+library(RMySQL)
+mysql <- dbDriver("MySQL")
+connection <- dbConnect(mysql, group = "OvuleFates")
+query <- dbSendQuery(connection, "SELECT population, type, seed, selfing FROM aq_ra")
+aq_ra.data <- fetch(query, n = -1)
+dbClearResult(query)
+query <- NULL
+dbDisconnect(connection)
+connection <- NULL
+dbUnloadDriver(mysql)
+rm(query, connection, mysql)
+attach(aq_ra.data)
+aq_ra.data$outcrossing <- 1-selfing
+aq_ra.data$selfSeed <- seed * selfing
+attach(aq_ra.data)
+aq_ra.data$crossSeed <- seed - selfSeed
+aq_ra.data$unfert <- carpelOvules - seed
+aq_ra.data$seedOvule <- seed / carpelOvules
+aq_ra.data$type <- as.factor(aq_ra.data$type)
+attach(aq_ra.data)
+model <- lm(seedOvule ~ outcrossing, data=aq_ra.data[type=="intact",])
+gs <- model$coefficients[1]
+gx <- model$coefficients[2] + gs
+dx <- 1
+ds <- 0.24
+emascCrossSeed <- round(mean(crossSeed[type=="emasculated"]), 1)
+intactCrossSeed <- round(mean(crossSeed[type=="intact"]), 1)
+emascCrossOvules <- round(emascCrossSeed/gx, 1)
+intactCrossOvules <- round(intactCrossSeed/gx, 1)
+emascCrossReproductive <- round(emascCrossSeed * dx, 1)
+intactCrossReproductive <- round(intactCrossSeed * dx, 1)
+emascSelfSeed <- round(mean(selfSeed[type=="emasculated"]), 1)
+intactSelfSeed <- round(mean(selfSeed[type=="intact"]), 1)
+emascSelfOvules <- round(emascSelfSeed/gs, 1)
+intactSelfOvules <- round(intactSelfSeed/gs, 1)
+emascSelfReproductive <- round(emascSelfSeed * ds, 1)
+intactSelfReproductive <- round(intactSelfSeed * ds, 1)
+\end{Scode}
+\citet{Herlihy02} provides data similar to Figure \ref{fig:pEst} which can be used to estimate both \(g_{s}\) and \(g_{x}\). Figure \ref{fig:aq} plots the outcrossing rate and seed-ovule ratio for the intact flowers of \citet{Herlihy02}. From these data, \(g_{s}=\Sexpr{round(gs, 2)}\) and \(g_{x}=\Sexpr{round(gx, 2)}\).
+
+\begin{figure}
+\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=aqFig}
+plot(seedOvule~outcrossing, data=aq_ra.data[type=="intact",], axes=FALSE, xlab="Proportion of ovules cross-fertilized", ylab="Seed-ovule ratio")
+axis(1)
+axis(2, las=1)
+sf <- cbind(round(seed), round(unfert))
+model <- glm(sf~outcrossing:type, binomial)
+Outcrossing <- seq(0, 1, 0.1)
+lines(Outcrossing, predict(model, data.frame(outcrossing=Outcrossing, type=factor(rep("intact", length(Outcrossing)), levels=levels(type))), type="response"))
+\end{Scode}
+\caption{Redrawn data from \citet{Herlihy02} plotting the outcrossing rate and seed-ovule ratio of intact flowers of {\ac}.}
+\label{fig:aq}
+\end{figure}
+
+Now we can substitute these estimates into equation \ref{eq:optT}:
+\begin{equation}\label{eq:aqT}
+t^{*}=\frac{\Sexpr{round(gx, 2)}}{\Sexpr{round(m, 2)}}\frac{\Sexpr{round(m, 2)}-\Sexpr{round(gs, 2)}}{\Sexpr{round(gx, 2)}-\Sexpr{round(gs, 2)}}=\Sexpr{round(tStar(m, gs, gx), 2)}
+\end{equation}
+
+\subsection{Assumptions}
+The preceding analysis of {\ac} made the following assumptions:
+\begin{description}
+\item[\(g_{x}\) is greater than \(m\)] This was necessary to estimate \(m\). If {\ac} is a mixed-mater this is appropriate.
+\item[intact flowers are not pollen limited] Presumably they are at least less limited than emasculated flowers. More usefully, the \(g_{s}\) values estimated from this approach and from the hand selfed data of \citet{Routley99} are equivalent. This suggests that self-fertilization alleviates pollen limitation in \citet{Herlihy02}.
+\item[\(t^{*}\) requires that \(\frac{d_{s}}{d_{x}} > \frac{1}{2}\)] Based on the estimates above \(\delta=1-\frac{g_{s}}{g_{x}}=1-\frac{\Sexpr{round(gs, 2)}}{\Sexpr{round(gx, 2)}}=\Sexpr{round(1-gs/gx, 2)}\) through seed production. Total lifetime \(\delta=1-\frac{g_{s}d_{s}}{g_{x}d_{x}}=0.88\) \citep{Routley99} which requires that \(\frac{d_{s}}{d_{x}}=\Sexpr{ds}\) which is \(< \frac{1}{2}\) and favours complete outcrossing. This leads to three alternatives:
+\begin{enumerate}
+\item Ovule fates don't work for {\ac}.
+\item We don't have enough information about \(d_{s}\) and \(d_{x}\).
+\item Investigations of \(d_{s}\) and \(d_{x}\) in {\ac} may be profitable.
+\end{enumerate}
+\end{description}
+
+\subsection{Reproductive assurance}
+Ovule fates could also be relevant for our understanding of reproductive assurance in {\Ac}. Figure \ref{fig:aqSO} shows the relation between the selfing rate and seed-ovule ratio for the plants of \citet{Herlihy02}. For both groups of plants, the seed-ovule ratio seems constrained to a maximum of \(m\) which is expected from ovule fates. Furthermore, Table \ref{table:soModelANOVA} shows that the seed-ovule ratio is unaffected by changes in the selfing rate for intact plants. In contrast, the seed-ovule and selfing rate are negatively correlated for emasculated plants. The negative relationship between the seed-ovule ratio selfing rate could be due to the loss of developing embryos from genetic deaths. However, this is inconsistent with the difference between intact and emasculated plants which, presumably, have the same genetic load. Is it consistent with pollen limitation of emasculated plants? Figure \ref{fig:aqW} and Table \ref{table:wModelANOVA} indicate that, although fitness declines with selfing, intact plants have a higher average fitness than emasculated plants.
+
+\begin{figure}
+\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=aqSO}
+plot(seedOvule~selfing, pch=c(21), bg=c("white", "black")[type], axes=FALSE, xlab="Proportion of ovules self-fertilized", ylab="Seed-ovule ratio")
+axis(1)
+axis(2, las=1)
+sf <- cbind(round(seed), round(unfert))
+so.model <- glm(sf~selfing:type, binomial)
+Selfing <- seq(0, 1, 0.1)
+lines(Selfing, predict(so.model, data.frame(selfing=Selfing, type=factor(rep("intact", length(Selfing)), levels=levels(type))), type="response"))
+lines(Selfing, predict(so.model, data.frame(selfing=Selfing, type=factor(rep("emasculated", length(Selfing)), levels=levels(type))), type="response"), lty="dashed")
+legend(0.2, 0.3, c("Emasculated", "Intact"), pch=c(21), pt.bg=c("white", "black"), bty="n", pt.cex=1.5)
+\end{Scode}
+\caption{Redrawn data from \citet{Herlihy02} plotting the selfing rate and seed-ovule ratio of {\ac}.}
+\label{fig:aqSO}
+\end{figure}
+\begin{figure}
+\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=aqW}
+ds <- 0.24
+aq_ra.data$fitness <- 2*ds*selfSeed + crossSeed
+attach(aq_ra.data)
+plot(fitness~selfing, pch=c(21), bg=c("white", "black")[type], axes=FALSE, xlab="Proportion of ovules self-fertilized", ylab="Fitness")
+axis(1)
+axis(2, las=1)
+w.model <- lm(fitness~selfing + type + selfing*type)
+lines(Selfing, predict(w.model, data.frame(selfing=Selfing, type=factor(rep("intact", length(Selfing)), levels=levels(type))), type="response"))
+lines(Selfing, predict(w.model, data.frame(selfing=Selfing, type=factor(rep("emasculated", length(Selfing)), levels=levels(type))), type="response"), lty="dashed")
+legend(0.2, 8, c("Emasculated", "Intact"), pch=c(21), pt.bg=c("white", "black"), bty="n", pt.cex=1.5)
+\end{Scode}
+\caption{Redrawn data from \citet{Herlihy02} plotting the selfing rate and fitness of {\ac}.}
+\label{fig:aqW}
+\end{figure}
+
+\begin{Scode}{echo=FALSE, results=tex, label=soModelTable}
+library(xtable)
+xtable(so.model, label='table:soModelANOVA', caption='Estimated coefficients of the binomial \\abbrv{glm} of the seed-ovule ratio in \{\\ac\} for intact and emasculated flowers with differing selfing rates.')
+\end{Scode}
+\begin{Scode}{echo=FALSE, results=tex, label=wModelTable}
+xtable(anova(w.model), label='table:wModelANOVA', caption='\\abbrv{anova} of fitness in \{\\ac\} for intact and emasculated flowers with differing selfing rates.')
+\end{Scode}
+
+\begin{table}[ht]
+\caption{The fates of {\ac} ovules for intact and emasculated flowers of \citet{Herlihy02}.}
+\centering
+\begin{tabular}{l l c c c c c}
+\hline
+Treatment & Type & O & F & Fg & Fgd & Fitness \\
+\hline
+Intact & Self & & \Sexpr{intactSelfOvules} & \Sexpr{intactSelfSeed} & \Sexpr{intactSelfReproductive} & \Sexpr{2*intactSelfReproductive} \\
+ & Cross & & \Sexpr{intactCrossOvules} & \Sexpr{intactCrossSeed} & \Sexpr{intactCrossReproductive} & \Sexpr{intactCrossReproductive} \\
+ & Total & \Sexpr{carpelOvules} & \Sexpr{intactSelfOvules+intactCrossOvules} & \Sexpr{intactSelfSeed+intactCrossSeed} & \Sexpr{intactSelfReproductive+intactCrossReproductive} & \Sexpr{2*intactSelfReproductive+intactCrossReproductive} \\
+Emasculated & Self & & \Sexpr{emascSelfOvules} & \Sexpr{emascSelfSeed} & \Sexpr{emascSelfReproductive} & \Sexpr{2*emascSelfReproductive} \\
+ & Cross & & \Sexpr{emascCrossOvules} & \Sexpr{emascCrossSeed} & \Sexpr{emascCrossReproductive} & \Sexpr{emascCrossReproductive} \\
+ & Total & \Sexpr{carpelOvules} & \Sexpr{emascSelfOvules+emascCrossOvules} & \Sexpr{emascSelfSeed+emascCrossSeed} & \Sexpr{emascSelfReproductive+emascCrossReproductive} & \Sexpr{2*emascSelfReproductive+emascCrossReproductive} \\
+\hline
+\end{tabular}
+\label{table:aqFates}
+\end{table}
+
+\newpage
+\bibliographystyle{jeb}
+\bibliography{/Volumes/iDisk-Local/Documents/References}
+
+\end{document}
+
+#\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=aqIntactSeed}
+#intact.data <- subset(aq_ra.data, type=="intact")
+#plot(c(0,1), c(0,26), axes=FALSE, xlab="Selfing rate", ylab="Seed set")
+#points(intact.data$selfing, emasc.data$selfSeed, pch=21, bg=c("white"))
+#points(intact.data$selfing, emasc.data$crossSeed, pch=21, bg=c("black"))
+#axis(1)
+#axis(2, las=1)
+#legend(0.3, 3, c("Self", "Cross"), pch=c(21), pt.bg=c("white", "black"), bty="n", pt.cex=1.5)
+#cross.model <- lm(crossSeed ~ selfing, data=intact.data)
+#abline(cross.model)
+#self.model <- lm(selfSeed ~ selfing, data=intact.data)
+#abline(self.model, lty="dashed")
+#\end{Scode}
+#\begin{Scode}{fig=TRUE,echo=FALSE,results=hide,label=aqEmascSeed}
+#emasc.data <- subset(aq_ra.data, type=="emasculated")
+#plot(c(0,1), c(0,15), axes=FALSE, xlab="Selfing rate", ylab="Seed set")
+#points(emasc.data$selfing, emasc.data$selfSeed, pch=21, bg=c("white"))
+#points(emasc.data$selfing, emasc.data$crossSeed, pch=21, bg=c("black"))
+#axis(1)
+#axis(2, las=1)
+#legend(0.3, 3, c("Self", "Cross"), pch=c(21), pt.bg=c("white", "black"), bty="n", pt.cex=1.5)
+#cross.model <- lm(crossSeed ~ selfing, data=emasc.data)
+#abline(cross.model)
+#self.model <- lm(selfSeed ~ selfing, data=emasc.data)
+#abline(self.model, lty="dashed")
+#\end{Scode}
